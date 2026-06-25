@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { navContent } from '../content/nav';
 
 const navLinks = [
-  { label: { ru: 'О КОМПАНИИ',                              en: 'COMPANY' },                      path: '/' },
-  { label: { ru: 'ОЦЕНКА РЕСУРСОВ',                         en: 'RESOURCE EVALUATION' },           path: '/resource-evaluation' },
-  { label: { ru: 'ЛАБОРАТОРНЫЕ ИССЛЕДОВАНИЯ И ОПУ',         en: 'LABORATORY & PILOT TESTING' },    path: '/laboratory' },
-  { label: { ru: 'ГОРНОЕ ПЛАНИРОВАНИЕ',                     en: 'MINE PLANNING' },                 path: '/mine-planning' },
-  { label: { ru: 'ЭКОЛОГИЧЕСКИЕ РАБОТЫ',                    en: 'ENVIRONMENTAL WORK' },             path: '/environmental' },
-  { label: { ru: 'ПРОЕКТИРОВАНИЕ И РАБОЧАЯ ДОКУМЕНТАЦИЯ',   en: 'ENGINEERING DESIGN' },             path: '/project-design' },
-  { label: { ru: 'РАЗРЕШЕНИЯ И ГОСЭКСПЕРТИЗА',              en: 'PERMITTING & STATE APPROVALS' },   path: '/permits' },
-  { label: { ru: 'ВВОД В ЭКСПЛУАТАЦИЮ',                    en: 'COMMISSIONING' },                  path: '/commissioning' },
+  { label: navContent.company,       path: '/about' },
+  { label: navContent.resources,     path: '/resource-evaluation' },
+  { label: navContent.mining,        path: '/mine-planning' },
+  { label: navContent.laboratory,    path: '/laboratory' },
+  { label: navContent.environmental, path: '/environmental' },
+  { label: navContent.projectDesign, path: '/project-design' },
+  { label: navContent.expertise,     path: '/permits' },
+  { label: navContent.epcm,          path: '/commissioning' },
+  { label: navContent.experience,    path: '/experience' },
 ];
 
 const LANGS = ['RU', 'EN', 'KZ'];
@@ -21,12 +23,15 @@ export default function Navbar() {
   const [isDesktop, setIsDesktop]   = useState(() => window.innerWidth >= 1024);
 
   useEffect(() => {
-    const fn = () => setIsDesktop(window.innerWidth >= 1024);
+    const fn = () => {
+      const desktop = window.innerWidth >= 1024;
+      setIsDesktop(desktop);
+      if (desktop) setMenuOpen(false);
+    };
     window.addEventListener('resize', fn);
     return () => window.removeEventListener('resize', fn);
   }, []);
 
-  useEffect(() => { if (isDesktop) setMenuOpen(false); }, [isDesktop]);
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -38,7 +43,9 @@ export default function Navbar() {
     <>
       <header style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-        height: 52, background: '#fff', borderBottom: '1px solid #e5e7eb',
+        height: 52, background: 'rgba(229,231,235,0.28)',
+        backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+        borderBottom: '1px solid rgba(255,255,255,0.25)', boxShadow: '0 1px 12px rgba(0,0,0,0.04)',
         display: 'flex', alignItems: 'center', padding: '0 24px', gap: 16,
       }}>
         {/* Logo */}
@@ -50,7 +57,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         {isDesktop && (
-          <nav style={{ flex: 1, display: 'flex', alignItems: 'center', minWidth: 0, gap: 'clamp(8px, 1.1vw, 22px)', overflow: 'hidden' }}>
+          <nav style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 0, gap: 'clamp(8px, 1.1vw, 22px)', overflow: 'hidden' }}>
             {navLinks.map((link) => (
               <NavLink key={link.path} to={link.path} end={link.path === '/'}
                 style={({ isActive }) => ({

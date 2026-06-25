@@ -25,16 +25,13 @@ const css = `
   .spt-hero-title { font-size: 28px; font-weight: 800; text-transform: uppercase; line-height: 1.1; margin: 0 0 16px; }
   .spt-hero-sub { font-size: 13px; line-height: 1.7; max-width: 500px; margin: 0 auto; }
 
-  .spt-content { background: #fff; }
-  .spt-wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+  .spt-content { background: #fff; position: relative; }
+  .spt-wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px; position: relative; }
   .spt-item {
     position: relative;
     display: flex; flex-direction: column; gap: 10px;
     padding: 34px 0 34px 18px;
     border-top: 1px solid #e5e7eb;
-    opacity: 0.48;
-    transform: translateY(26px);
-    transition: opacity 520ms ease, transform 520ms ease, border-color 520ms ease;
   }
   .spt-item::before {
     content: '';
@@ -45,41 +42,14 @@ const css = `
     width: 3px;
     border-radius: 999px;
     background: #d1d5db;
-    transform: scaleY(0.3);
-    transform-origin: top;
-    opacity: 0;
-    transition: transform 520ms ease, opacity 520ms ease, background 520ms ease;
-  }
-  .spt-item.is-visible {
-    opacity: 0.82;
-    transform: translateY(0);
-  }
-  .spt-item.is-active {
-    opacity: 1;
-    border-color: #bfdbfe;
-  }
-  .spt-item.is-active::before {
-    background: var(--spt-accent, #1d4ed8);
-    opacity: 1;
-    transform: scaleY(1);
   }
   .spt-num {
     font-size: 60px; font-weight: 300; color: #e5e7eb; line-height: 1;
-    transition: color 520ms ease, transform 520ms ease;
-  }
-  .spt-item.is-active .spt-num {
-    color: color-mix(in srgb, var(--spt-accent, #1d4ed8) 24%, #e5e7eb);
-    transform: translateX(4px);
   }
   .spt-title {
     display: inline;
     font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4; margin: 0 0 10px;
-    background-image: linear-gradient(transparent 58%, color-mix(in srgb, var(--spt-accent, #1d4ed8) 16%, transparent) 58%);
-    background-size: 0% 100%;
-    background-repeat: no-repeat;
-    transition: background-size 520ms ease, color 520ms ease;
   }
-  .spt-item.is-active .spt-title { background-size: 100% 100%; }
   .spt-accent { border-left: 2px solid; padding-left: 12px; font-size: 12px; font-style: italic; line-height: 1.65; margin-bottom: 14px; }
   .spt-sub { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #374151; margin-bottom: 8px; }
   .spt-text { font-size: 12px; color: #6b7280; line-height: 1.75; margin-bottom: 14px; }
@@ -89,6 +59,10 @@ const css = `
   .spt-section { margin-top: 18px; border-top: 1px solid #f3f4f6; padding-top: 18px; }
   .spt-section-h { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #1f2937; margin-bottom: 8px; }
 
+  /* Mobile: static content, decorative wavy line instead of scroll-reveal motion */
+  .spt-wavy { display: block; position: absolute; left: 0; top: 0; bottom: 0; width: 60px; pointer-events: none; overflow: hidden; opacity: 0.18; z-index: 0; }
+  .spt-item::before { background: #d1d5db; }
+
   @media(min-width: 768px) {
     .spt-hero-img { width: 55%; height: 100%; opacity: 1; left: 0; top: 0; bottom: 0; right: auto; }
     .spt-hero-text { position: absolute; right: 0; width: 46%; padding: 0 80px 0 32px; text-align: left; }
@@ -97,6 +71,47 @@ const css = `
     .spt-wrap { padding: 0 40px; }
     .spt-item { display: grid; grid-template-columns: 130px 1fr; gap: 0 36px; padding: 56px 0 56px 24px; }
     .spt-num { font-size: 90px; }
+
+    /* Desktop only: scroll-reveal animation (Ecology-page style) */
+    .spt-wavy { display: none; }
+    .spt-item {
+      opacity: 0.48;
+      transform: translateY(26px);
+      transition: opacity 520ms ease, transform 520ms ease, border-color 520ms ease;
+    }
+    .spt-item::before {
+      transform: scaleY(0.3);
+      transform-origin: top;
+      opacity: 0;
+      transition: transform 520ms ease, opacity 520ms ease, background 520ms ease;
+    }
+    .spt-item.is-visible {
+      opacity: 0.82;
+      transform: translateY(0);
+    }
+    .spt-item.is-active {
+      opacity: 1;
+      border-color: #bfdbfe;
+    }
+    .spt-item.is-active::before {
+      background: var(--spt-accent, #1d4ed8);
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    .spt-num {
+      transition: color 520ms ease, transform 520ms ease;
+    }
+    .spt-item.is-active .spt-num {
+      color: color-mix(in srgb, var(--spt-accent, #1d4ed8) 24%, #e5e7eb);
+      transform: translateX(4px);
+    }
+    .spt-title {
+      background-image: linear-gradient(transparent 58%, color-mix(in srgb, var(--spt-accent, #1d4ed8) 16%, transparent) 58%);
+      background-size: 0% 100%;
+      background-repeat: no-repeat;
+      transition: background-size 520ms ease, color 520ms ease;
+    }
+    .spt-item.is-active .spt-title { background-size: 100% 100%; }
   }
   @media(min-width: 1200px) {
     .spt-hero-text { padding: 0 100px 0 40px; }
@@ -164,15 +179,14 @@ function Item({ item, index, activeIndex, visibleItems, itemRef }) {
 export default function ServicePageTemplate({ hero, items }) {
   const itemRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [visibleItems, setVisibleItems] = useState([]);
+  const [visibleItems, setVisibleItems] = useState(() => (
+    typeof window !== 'undefined' && 'IntersectionObserver' in window ? [] : items.map((_, index) => index)
+  ));
 
   useEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, items.length);
 
-    if (!('IntersectionObserver' in window)) {
-      setVisibleItems(items.map((_, index) => index));
-      return undefined;
-    }
+    if (!('IntersectionObserver' in window)) return undefined;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -236,6 +250,11 @@ export default function ServicePageTemplate({ hero, items }) {
 
       {/* Content items */}
       <section className="spt-content">
+        <div className="spt-wavy" aria-hidden="true">
+          <svg viewBox="0 0 60 1000" preserveAspectRatio="none" style={{ width: '100%', height: '100%' }} fill="none">
+            <path d="M30 0 C10 100 50 200 30 300 C10 400 50 500 30 600 C10 700 50 800 30 900 C10 950 30 1000 30 1000" stroke="#9ca3af" strokeWidth="1" />
+          </svg>
+        </div>
         <div className="spt-wrap" style={{ paddingTop: 8, paddingBottom: 60 }}>
           {items.map((item, i) => (
             <Item
