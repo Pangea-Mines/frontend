@@ -1,5 +1,5 @@
-import HomeIntro from '../components/HomeIntro';
+import About from './About';
 
 export default function Home() {
-  return <HomeIntro />;
+  return <About />;
 }

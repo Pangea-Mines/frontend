@@ -101,11 +101,6 @@ export default function About() {
             ))}
           </div>
 
-          <div className="about-quote">
-            {aboutContent.quote}
-            <div className="about-quote-author">{aboutContent.quoteAuthor}</div>
-          </div>
-
           <div className="about-section-tag" style={{ marginTop: 56 }}>{aboutContent.whatWeDoTag}</div>
           <p className="about-p">{aboutContent.whatWeDoIntro}</p>
 
@@ -136,6 +131,11 @@ export default function About() {
                 <div className="about-principle-text">{p.text}</div>
               </div>
             ))}
+          </div>
+
+          <div className="about-quote" style={{ marginTop: 56 }}>
+            {aboutContent.quote}
+            <div className="about-quote-author">{aboutContent.quoteAuthor}</div>
           </div>
         </div>
       </div>
