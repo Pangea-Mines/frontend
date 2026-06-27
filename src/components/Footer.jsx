@@ -19,19 +19,23 @@ export default function Footer() {
         }
         .ftr-pages a:hover { color: #fff; }
 
+        .ftr-contacts { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.8; flex-shrink: 0; }
+        .ftr-contacts-name { color: #fff; font-weight: 700; margin-bottom: 6px; }
+        .ftr-contacts a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
+        .ftr-contacts a:hover { color: #fff; }
+
         .ftr-bottom {
-          border-top: 1px solid rgba(255,255,255,0.12);
-          padding: 20px 0; display: flex; align-items: center; justify-content: space-between;
-          flex-wrap: wrap; gap: 12px;
+          padding: 20px 0 32px; display: flex; flex-direction: column; align-items: center;
+          justify-content: center; gap: 12px; text-align: center;
         }
         .ftr-bottom span { font-size: 12px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 6px; }
-        .ftr-bottom-links { display: flex; gap: 28px; flex-wrap: wrap; }
+        .ftr-bottom-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
         .ftr-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.6); text-decoration: none; }
         .ftr-bottom-links a:hover { color: #fff; }
 
         @media(min-width: 1024px) {
           .ftr-inner { padding: 0 40px; }
-          .ftr-grid { flex-direction: row; align-items: center; gap: 80px; }
+          .ftr-grid { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; }
           .ftr-pages { grid-template-columns: repeat(5, auto); max-width: 640px; }
         }
       `}</style>
@@ -50,6 +54,14 @@ export default function Footer() {
               <Link key={page.path} to={page.path}>{page.label}</Link>
             ))}
           </nav>
+
+          <div className="ftr-contacts">
+            <div className="ftr-contacts-name">{footerContent.contacts.company}</div>
+            <div>{footerContent.contacts.bin}</div>
+            <div>{footerContent.contacts.address}</div>
+            <div>{footerContent.contacts.phoneLabel} <a href={footerContent.contacts.phoneHref}>{footerContent.contacts.phone}</a></div>
+            <div>{footerContent.contacts.emailLabel} <a href={footerContent.contacts.emailHref}>{footerContent.contacts.email}</a></div>
+          </div>
         </div>
 
         <div className="ftr-bottom">
@@ -57,7 +69,6 @@ export default function Footer() {
           <div className="ftr-bottom-links">
             <a href="#">{footerContent.bottom.privacy}</a>
             <a href="#">{footerContent.bottom.terms}</a>
-            <a href="#">{footerContent.bottom.contacts}</a>
           </div>
         </div>
       </div>

@@ -30,10 +30,6 @@ export default function About() {
   return (
     <div style={{ width: '100%' }}>
       <style>{`
-        .about-strip {
-          height: 170px;
-          background: linear-gradient(100deg, #c8c0b8 0%, #d9d3cb 45%, #f3f1ee 100%);
-        }
         .about-body { position: relative; background: linear-gradient(90deg, #c7c1be, #ffffff); overflow: hidden; }
         .about-wrap { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 56px 24px 80px; }
 
@@ -66,7 +62,6 @@ export default function About() {
         .about-line-wrap { position: absolute; left: 0; top: 0; bottom: 0; width: 420px; opacity: 0.5; }
 
         @media(min-width: 768px) {
-          .about-strip { height: 200px; }
           .about-wrap { padding: 80px 40px 100px 460px; }
           .about-title { font-size: 32px; }
           .about-foundations { grid-template-columns: repeat(3, 1fr); gap: 28px; }
@@ -76,8 +71,6 @@ export default function About() {
       `}</style>
 
       <HomeIntro />
-
-      <div className="about-strip" />
 
       <div className="about-body">
         <div className="about-line-wrap">

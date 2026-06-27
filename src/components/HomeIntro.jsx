@@ -57,7 +57,6 @@ function ServicesCarousel() {
               to={svc.path}
               className="svc-card"
               ref={(node) => { cardRefs.current[i] = node; if (node) node.dataset.index = i; }}
-              style={{ border: `1.5px solid ${svc.borderColor}` }}
             >
               <h3 className="svc-card-title">{homeContent.services[svc.id]}</h3>
               <div className="svc-card-link" style={{ color: svc.borderColor }}>
@@ -138,7 +137,7 @@ export default function HomeIntro() {
         }
 
         /* Services section */
-        .home-cards { background: linear-gradient(180deg,#d8d0c8 0%,#e8e2db 100%); padding: 48px 0 60px; }
+        .home-cards { background: linear-gradient(90deg, #c7c1be, #ffffff); padding: 48px 0 60px; }
         .home-cards-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 
         .svc-carousel { display: flex; align-items: center; gap: 10px; }
@@ -152,10 +151,11 @@ export default function HomeIntro() {
           border-radius: 12px; padding: 24px;
           display: flex; flex-direction: column; justify-content: space-between;
           min-height: 140px; text-decoration: none;
-          background: rgba(255,255,255,0.55); backdrop-filter: blur(4px);
-          transition: background 0.2s;
+          border: 1.5px solid transparent;
+          background: linear-gradient(90deg, #c7c1be, #ffffff) padding-box, linear-gradient(90deg, #3a206d, #ff724d) border-box;
+          transition: filter 0.2s;
         }
-        .svc-card:hover { background: rgba(255,255,255,0.75); }
+        .svc-card:hover { filter: brightness(1.04); }
         .svc-card-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #1a1a1a; line-height: 1.3; margin: 0; }
         .svc-card-link { font-size: 11px; font-weight: 600; margin-top: 20px; display: flex; align-items: center; gap: 6px; }
 

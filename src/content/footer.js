@@ -5,6 +5,17 @@ export const footerContent = {
     name: 'PANGEA',
     taglineLines: ['Горнорудный инжиниринг', 'и консалтинг полного цикла'],
   },
+  contacts: {
+    company: 'ТОО "Pangea Mines Group"',
+    bin: 'БИН: 050440005211',
+    address: 'Адрес: РЕСПУБЛИКА КАЗАХСТАН, Г.АЛМАТЫ ул. Жандосова 67',
+    phoneLabel: 'Тел:',
+    phone: '+ 7 (707) 828 00 30',
+    phoneHref: 'tel:+77078280030',
+    emailLabel: 'e-mail:',
+    email: 'info@pangeamines.kz',
+    emailHref: 'mailto:info@pangeamines.kz',
+  },
   pages: [
     { label: navContent.company.ru, path: '/about' },
     { label: navContent.resources.ru, path: '/resource-evaluation' },
@@ -20,6 +31,5 @@ export const footerContent = {
     copyright: '© 2026 Pangea PMG. Все права защищены',
     privacy: 'Политика конфиденциальности',
     terms: 'Условия использования',
-    contacts: 'Контакты',
   },
 };

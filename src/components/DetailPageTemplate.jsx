@@ -36,7 +36,7 @@ function Item({ item, accentColor, index, activeIndex, visibleItems, itemRef }) 
       </div>
       <div>
         <div className="dpt-title-row">
-          <h3 className="dpt-title">{item.title}</h3>
+          <h3 className="dpt-title"><span className="dpt-title-text">{item.title}</span></h3>
           {item.duration && <span className="dpt-duration">{item.duration}</span>}
         </div>
         {item.accent && (
@@ -152,22 +152,48 @@ export default function DetailPageTemplate({
           });
           return [...next].sort((a, b) => a - b);
         });
-
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .map((entry) => ({
-            index: Number(entry.target.dataset.index),
-            distance: Math.abs(entry.boundingClientRect.top + entry.boundingClientRect.height / 2 - window.innerHeight / 2),
-          }))
-          .sort((a, b) => a.distance - b.distance);
-
-        if (visibleEntries.length > 0) setActiveIndex(visibleEntries[0].index);
       },
-      { root: null, rootMargin: '-32% 0px -32% 0px', threshold: [0.18, 0.35, 0.6] }
+      { root: null, rootMargin: '-10% 0px -10% 0px', threshold: 0 }
     );
 
     itemRefs.current.forEach((node) => node && observer.observe(node));
     return () => observer.disconnect();
+  }, [items]);
+
+  useEffect(() => {
+    const computeActive = () => {
+      let bestIndex = null;
+      let bestDistance = Infinity;
+      itemRefs.current.forEach((node, index) => {
+        if (!node) return;
+        const rect = node.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        const distance = Math.abs(rect.top + rect.height / 2 - window.innerHeight / 2);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = index;
+        }
+      });
+      if (bestIndex !== null) setActiveIndex(bestIndex);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        computeActive();
+        ticking = false;
+      });
+    };
+
+    computeActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [items]);
 
   const textAlignDesktop = heroAlign === 'right' ? 'right' : heroAlign === 'center' ? 'center' : 'left';
@@ -175,7 +201,7 @@ export default function DetailPageTemplate({
   return (
     <div style={{ width: '100%', '--dpt-gradient': accentGradient }}>
       <style>{`
-        .dpt-hero { position: relative; min-height: 80vh; overflow: hidden; background: linear-gradient(135deg,#e6e1da,#d3ccc2); display: flex; align-items: center; }
+        .dpt-hero { position: relative; min-height: 80vh; overflow: hidden; background: linear-gradient(90deg, #c7c1be, #ffffff); display: flex; align-items: center; }
         .dpt-hero-img { width: 100%; height: 100%; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
         .dpt-hero-img img { width: 60%; max-width: 480px; object-fit: contain; filter: drop-shadow(0 24px 50px rgba(0,0,0,0.18)); }
         .dpt-hero-text { position: relative; z-index: 1; width: 100%; padding: 310px 24px 40px; text-align: center; }
@@ -218,9 +244,10 @@ export default function DetailPageTemplate({
         .dpt-letter-pill-label { font-size: 9px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; }
         .dpt-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
         .dpt-title {
-          display: inline; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; color: var(--dpt-accent); margin: 0 0 8px;
-          background-image: linear-gradient(transparent 58%, color-mix(in srgb, var(--dpt-accent) 16%, transparent) 58%);
-          background-size: 0% 100%; background-repeat: no-repeat;
+          display: inline; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4; margin: 0 0 8px;
+        }
+        .dpt-title-text {
+          background-image: var(--dpt-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
         }
         .dpt-duration { flex-shrink: 0; font-size: 11px; color: #9ca3af; white-space: nowrap; }
         .dpt-accent { border-left: 2px solid var(--dpt-accent); padding-left: 12px; font-size: 12px; font-style: italic; color: var(--dpt-accent); line-height: 1.6; margin-bottom: 12px; }
@@ -263,9 +290,11 @@ export default function DetailPageTemplate({
         }
 
         .dpt-wim { margin-top: 48px; display: flex; align-items: center; gap: 24px; }
-        .dpt-wim.reverse { flex-direction: row-reverse; justify-content: space-between; }
         .dpt-wim-circle { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; background-image: radial-gradient(circle, #38bdf8 1.4px, transparent 1.6px); background-size: 5px 5px; opacity: 0.85; }
-        .dpt-wim-tag { font-size: 13px; font-weight: 800; color: #111; margin-bottom: 6px; }
+        .dpt-wim-tag {
+          display: inline-block; font-size: 13px; font-weight: 800; margin-bottom: 6px;
+          background-image: var(--dpt-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
         .dpt-wim-tag-line { display: block; }
         .dpt-wim-text { font-size: 11px; color: #4b5563; line-height: 1.7; text-transform: uppercase; letter-spacing: 0.02em; max-width: 640px; }
 
@@ -283,26 +312,23 @@ export default function DetailPageTemplate({
           .dpt-num { font-size: 80px; transition: color 480ms ease, transform 480ms ease; }
 
           .dpt-item {
-            opacity: 0.48; transform: translateY(24px);
+            opacity: 0.48; transform: translateY(24px) scale(1); transform-origin: left center;
             transition: opacity 480ms ease, transform 480ms ease, border-color 480ms ease;
           }
           .dpt-item::before {
             transform: scaleY(0.3); transform-origin: top; opacity: 0;
             transition: transform 480ms ease, opacity 480ms ease, background 480ms ease;
           }
-          .dpt-title { transition: background-size 480ms ease, color 480ms ease; }
-          .dpt-item.is-visible { opacity: 0.82; transform: translateY(0); }
-          .dpt-item.is-active { opacity: 1; }
-          .dpt-item.is-active::before { background: var(--dpt-accent); opacity: 1; transform: scaleY(1); }
+          .dpt-item.is-visible { opacity: 0.82; transform: translateY(0) scale(1); }
+          .dpt-item.is-active { opacity: 1; transform: translateY(0) scale(1.04); }
+          .dpt-item.is-active::before { background: var(--dpt-gradient); opacity: 1; transform: scaleY(1); }
           .dpt-item.is-active .dpt-num { color: color-mix(in srgb, var(--dpt-accent) 28%, #e5e7eb); transform: translateX(4px); }
-          .dpt-item.is-active .dpt-title { background-size: 100% 100%; }
           .dpt-cards { grid-template-columns: repeat(3, 1fr); }
           .dpt-card.full { grid-column: 1 / -1; }
         }
         @media (prefers-reduced-motion: reduce) {
           .dpt-item { transition: none; transform: none; }
           .dpt-item::before { transition: none; }
-          .dpt-title { transition: none; }
         }
       `}</style>
 
@@ -403,14 +429,14 @@ export default function DetailPageTemplate({
           ))}
 
           {whyItMatters && (
-            <div className={`dpt-wim${whyItMatters.circlePosition === 'right' ? ' reverse' : ''}`}>
+            <div className="dpt-wim">
               <div className="dpt-wim-circle" />
               <div>
                 {(whyItMatters.tagLines || whyItMatters.tag) && (
                   <div className="dpt-wim-tag">
                     {whyItMatters.tagLines
                       ? whyItMatters.tagLines.map((line, i) => (
-                          <span key={i} className="dpt-wim-tag-line" style={{ color: line.color }}>{line.text}</span>
+                          <span key={i} className="dpt-wim-tag-line">{line.text}</span>
                         ))
                       : whyItMatters.tag}
                   </div>
