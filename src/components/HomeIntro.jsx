@@ -90,19 +90,49 @@ function ServicesCarousel() {
 }
 
 export default function HomeIntro() {
+  const heroBlockRef = useRef(null);
+  const [exitProgress, setExitProgress] = useState(0);
+
+  useEffect(() => {
+    let target = 0;
+    let current = 0;
+    let rafId;
+
+    const updateTarget = () => {
+      target = Math.max(0, Math.min(1, window.scrollY / 600));
+    };
+
+    const tick = () => {
+      current += (target - current) * 0.15;
+      if (Math.abs(target - current) < 0.001) current = target;
+      setExitProgress(current);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    updateTarget();
+    window.addEventListener('scroll', updateTarget, { passive: true });
+    rafId = requestAnimationFrame(tick);
+    return () => {
+      window.removeEventListener('scroll', updateTarget);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <div style={{ width: '100%' }}>
       <style>{`
         .home-hero {
-          position: relative; min-height: 78svh; overflow: hidden;
+          position: relative; min-height: calc(100svh - 72px); overflow: hidden;
           display: flex; align-items: flex-start;
           background: linear-gradient(180deg, #c8c0b8 0%, #d4cdc5 40%, #e0d9d1 100%);
         }
         .home-hero-bg {
-          position: absolute; left: 0; bottom: 0; width: 100%; height: auto;
+          position: absolute; left: 50%; bottom: 0; width: auto; height: 38vh; max-width: none;
+          transform: translateX(-50%);
           display: block; opacity: 0.85;
         }
         .home-hero-reflection {
+          display: none;
           position: relative; width: 100%; line-height: 0;
           background: linear-gradient(180deg,#d8d0c8 0%,#e8e2db 100%);
         }
@@ -111,7 +141,7 @@ export default function HomeIntro() {
         }
         .home-hero-text {
           position: relative; z-index: 1;
-          padding: 33vh 24px 0; width: 100%;
+          padding: 38vh 24px 0; width: 100%;
         }
         .home-hero-h1 {
           font-size: 15px; font-weight: 800; line-height: 1.18; text-transform: uppercase; margin: 0 0 14px;
@@ -172,6 +202,9 @@ export default function HomeIntro() {
         .svc-dot.is-active { background: #c75a1a; width: 20px; border-radius: 4px; }
 
         @media(min-width:768px) {
+          .home-hero { min-height: 78svh; }
+          .home-hero-bg { left: 0; width: 100%; height: auto; max-width: 100%; transform: none; }
+          .home-hero-reflection { display: block; }
           .home-hero-text { padding: 31vh 60px 0; max-width: 820px; }
           .home-hero-h1 { font-size: 32px; }
           .home-cards-inner { padding: 0 40px; }
@@ -184,28 +217,36 @@ export default function HomeIntro() {
         }
       `}</style>
 
-      {/* Hero */}
-      <section className="home-hero">
-        <img src="/images/Hero/559757 (1).png" className="home-hero-bg" alt="Landscape" />
-        <div className="home-hero-text">
-          <h1 className="home-hero-h1">
-            {homeContent.hero.titleLines.map((line, i) => (
-              <span key={i} className="home-hero-h1-line">{line}</span>
-            ))}
-          </h1>
-          <p className="home-hero-sub">{homeContent.hero.subtitle}</p>
-          <Link to="/resource-evaluation" className="home-cta">
-            <span className="home-cta-label">{homeContent.hero.cta}</span>
-            <svg width="24" height="10" viewBox="0 0 24 10" fill="none">
-              <path d="M0 5h22M17 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5"/>
-            </svg>
-          </Link>
-        </div>
-      </section>
+      {/* Hero + reflection, blurring into our gradient as it scrolls away */}
+      <div ref={heroBlockRef} style={{ position: 'relative' }}>
+        <section className="home-hero">
+          <img src="/images/Hero/559757 (1).png" className="home-hero-bg" alt="Landscape" />
+          <div className="home-hero-text">
+            <h1 className="home-hero-h1">
+              {homeContent.hero.titleLines.map((line, i) => (
+                <span key={i} className="home-hero-h1-line">{line}</span>
+              ))}
+            </h1>
+            <p className="home-hero-sub">{homeContent.hero.subtitle}</p>
+            <Link to="/resource-evaluation" className="home-cta">
+              <span className="home-cta-label">{homeContent.hero.cta}</span>
+              <svg width="24" height="10" viewBox="0 0 24 10" fill="none">
+                <path d="M0 5h22M17 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5"/>
+              </svg>
+            </Link>
+          </div>
+        </section>
 
-      {/* Reflection of hero background, mirrored */}
-      <div className="home-hero-reflection">
-        <img src="/images/Hero/559757 (1) copy.png" alt="" aria-hidden="true" />
+        {/* Reflection of hero background, mirrored */}
+        <div className="home-hero-reflection">
+          <img src="/images/Hero/559757 (1) copy.png" alt="" aria-hidden="true" />
+        </div>
+
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
+          background: 'linear-gradient(90deg, #c7c1be, #ffffff)',
+          opacity: exitProgress,
+        }} />
       </div>
 
       {/* Services carousel */}

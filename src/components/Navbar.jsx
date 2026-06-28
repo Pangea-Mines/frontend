@@ -85,8 +85,8 @@ export default function Navbar() {
           <div style={{ position: 'relative', flexShrink: 0 }}>
             <button onClick={() => setLangOpen(!langOpen)} style={{
               display: 'flex', alignItems: 'center', gap: 4, background: 'none',
-              border: 'none', cursor: 'pointer', fontSize: 10, fontWeight: 600,
-              letterSpacing: '0.1em', color: '#9ca3af',
+              border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 600,
+              letterSpacing: '0.05em', color: '#c7c1be',
             }}>
               <svg width="18" height="15" viewBox="0 0 22 18" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M1 4h9M5 1v3M6 13s-1-2-2-4.5M10 13s-1-2-2-4.5" />
@@ -96,12 +96,12 @@ export default function Navbar() {
               <svg width="7" height="4" viewBox="0 0 7 4" fill="currentColor"><path d="M0 0l3.5 4L7 0H0z" /></svg>
             </button>
             {langOpen && (
-              <div style={{ position: 'absolute', right: 0, top: '100%', marginTop: 6, background: '#fff', border: '1px solid #e5e7eb', boxShadow: '0 4px 16px rgba(0,0,0,0.10)', zIndex: 100 }}>
+              <div style={{ position: 'absolute', right: 0, top: '100%', marginTop: 6, background: 'linear-gradient(90deg, #c7c1be, #ffffff)', border: '1px solid #e5e7eb', boxShadow: '0 4px 16px rgba(0,0,0,0.10)', zIndex: 100 }}>
                 {LANGS.map((lang) => (
                   <button key={lang} onClick={() => { setActiveLang(lang); setLangOpen(false); }} style={{
                     display: 'block', width: '100%', textAlign: 'left', padding: '8px 20px',
                     fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', border: 'none', cursor: 'pointer',
-                    background: activeLang === lang ? '#111' : '#fff',
+                    background: activeLang === lang ? '#111' : 'transparent',
                     color: activeLang === lang ? '#fff' : '#555',
                   }}>{lang}</button>
                 ))}
@@ -129,45 +129,30 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div style={{
         position: 'fixed', top: 72, left: 0, right: 0, bottom: 0, zIndex: 40,
-        background: '#fff', overflowY: 'auto',
+        background: 'linear-gradient(90deg, #c7c1be, #ffffff)', overflowY: 'auto',
         transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',
         display: 'flex', flexDirection: 'column',
       }}>
-        <nav style={{ flex: 1, padding: '24px 24px 0' }}>
-          {navLinks.map((link, i) => (
+        <nav style={{ flex: 1, padding: '24px 24px' }}>
+          {navLinks.map((link) => (
             <NavLink key={link.path} to={link.path} end={link.path === '/'}
               onClick={() => setMenuOpen(false)}
               style={({ isActive }) => ({
-                display: 'flex', alignItems: 'center', gap: 12,
-                padding: '16px 0', borderBottom: '1px solid #f3f4f6',
+                display: 'flex', alignItems: 'center',
+                padding: '14px 0',
                 textDecoration: 'none', textTransform: 'uppercase',
                 backgroundImage: isActive ? link.gradient : 'none',
                 WebkitBackgroundClip: 'text', backgroundClip: 'text',
                 color: isActive ? 'transparent' : '#374151',
                 fontWeight: isActive ? 700 : 400,
-                fontSize: 13, letterSpacing: '0.06em',
+                fontSize: 18, letterSpacing: '0.06em',
               })}
             >
-              <span style={{ fontSize: 10, color: '#d1d5db', minWidth: 20 }}>{String(i + 1).padStart(2, '0')}</span>
               {label(link)}
             </NavLink>
           ))}
         </nav>
-        <div style={{ padding: '24px', borderTop: '1px solid #f3f4f6' }}>
-          <p style={{ fontSize: 10, color: '#9ca3af', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12 }}>Язык</p>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {LANGS.map((lang) => (
-              <button key={lang} onClick={() => setActiveLang(lang)} style={{
-                padding: '8px 16px', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em',
-                border: '1px solid', cursor: 'pointer',
-                background: activeLang === lang ? '#111' : '#fff',
-                color: activeLang === lang ? '#fff' : '#9ca3af',
-                borderColor: activeLang === lang ? '#111' : '#e5e7eb',
-              }}>{lang}</button>
-            ))}
-          </div>
-        </div>
       </div>
     </>
   );

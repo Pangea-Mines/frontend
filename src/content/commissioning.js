@@ -5,6 +5,7 @@ export const commissioningContent = {
   heroSubtitle: 'Выступаем единым техническим управляющим проекта на всех стадиях: от инженерных изысканий и проектирования до закупок, строительного контроля и запуска объекта. Заказчик взаимодействует с одной командой и получает полную прозрачность проекта в реальном времени.',
   heroAlign: 'left',
   accentColor: '#4338ca',
+  heroScrollAnimation: true,
 
   letterNav: [
     { letter: 'E', label: 'Engineering' },

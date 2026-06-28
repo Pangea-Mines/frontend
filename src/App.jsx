@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home               from './pages/Home';
 import About              from './pages/About';
 import ResourceEvaluation from './pages/ResourceEvaluation';
@@ -15,6 +16,7 @@ import Experience         from './pages/Experience';
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <main style={{ paddingTop: 72 }}>
         <Routes>

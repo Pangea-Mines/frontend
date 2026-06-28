@@ -12,6 +12,7 @@ export const projectDesignContent = {
   heroSubtitle: 'Превращаем технические решения в полный комплект проектно-сметной документации — от концептуальных схем до рабочих чертежей, готовых к строительству и прохождению государственной экспертизы',
   heroAlign: 'left',
   accentColor: '#1d4ed8',
+  heroScrollAnimation: true,
 
   overviewButton: { label: 'ОБЗОР ПРОЕКТОВ', path: '/experience' },
 

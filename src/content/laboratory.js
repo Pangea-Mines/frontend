@@ -17,6 +17,7 @@ export const laboratoryContent = {
   heroCreditGradient: 'linear-gradient(90deg, #3a206d, #ff724d)',
   heroAlign: 'left',
   accentColor: '#5a64b8',
+  heroScrollAnimation: true,
 
   items: [
     {

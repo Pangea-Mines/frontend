@@ -14,6 +14,7 @@ export const environmentalContent = {
   heroSubtitle: 'Комплексное экологическое сопровождение горнорудных проектов — от скрининга и ОВОС до Комплексного экологического разрешения и устойчивого запуска предприятия',
   heroAlign: 'left',
   accentColor: '#15803d',
+  heroScrollAnimation: true,
 
   items: [
     {

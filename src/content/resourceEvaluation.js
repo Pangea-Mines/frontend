@@ -8,6 +8,7 @@ export const resourceEvaluationContent = {
   heroSubtitle: 'На основе керна, опробования и геофизики строим геологическую модель месторождения и разрабатываем программу разведочных работ с обоснованием бурения, QA/QC и бюджета — готовую для согласования с инвесторами и регуляторами ГКЗ РК, KAZRC, JORC',
   heroAlign: 'left',
   accentColor: '#92400e',
+  heroScrollAnimation: true,
 
   items: [
     {

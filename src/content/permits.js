@@ -5,6 +5,7 @@ export const permitsContent = {
   heroSubtitle: 'Полное сопровождение согласований, разрешений и государственной экспертизы — от сбора исходных данных до утверждения проекта и получения разрешения на строительство',
   heroAlign: 'left',
   accentColor: '#9a2f2f',
+  heroScrollAnimation: true,
 
   items: [
     {

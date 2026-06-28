@@ -8,6 +8,7 @@ export const minePlanningContent = {
   heroSubtitle: 'На основе геологической модели и утверждённых запасов проектируем карьер или шахту: оптимизация контуров, геомеханика, БВР и полный комплект ПГР — готовый к лицензированию',
   heroAlign: 'left',
   accentColor: '#3b4f8c',
+  heroScrollAnimation: true,
 
   items: [
     {

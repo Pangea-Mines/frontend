@@ -125,6 +125,7 @@ export default function DetailPageTemplate({
   heroCreditGradient,
   heroAlign = 'center',
   accentColor = '#92400e',
+  heroScrollAnimation = false,
   items,
   whyItMatters,
   overviewButton,
@@ -133,7 +134,11 @@ export default function DetailPageTemplate({
   const titleLines = heroTitleLines || [heroTitleParts];
   const accentGradient = heroTitleGradient || `linear-gradient(90deg, ${accentColor}, ${accentColor})`;
   const itemRefs = useRef([]);
+  const heroExitRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [heroMounted, setHeroMounted] = useState(false);
+  const [heroScrollProgress, setHeroScrollProgress] = useState(0);
+  const [heroExitProgress, setHeroExitProgress] = useState(0);
   const [visibleItems, setVisibleItems] = useState(() => (
     typeof window !== 'undefined' && 'IntersectionObserver' in window ? [] : items.map((_, i) => i)
   ));
@@ -159,6 +164,69 @@ export default function DetailPageTemplate({
     itemRefs.current.forEach((node) => node && observer.observe(node));
     return () => observer.disconnect();
   }, [items]);
+
+  useEffect(() => {
+    if (!heroScrollAnimation) return undefined;
+    const t = setTimeout(() => setHeroMounted(true), 50);
+    return () => clearTimeout(t);
+  }, [heroScrollAnimation]);
+
+  useEffect(() => {
+    if (!heroScrollAnimation) return undefined;
+    let target = Math.min(1, window.scrollY / 600);
+    let current = target;
+    let rafId;
+
+    const updateTarget = () => {
+      target = Math.min(1, window.scrollY / 600);
+    };
+
+    const tick = () => {
+      current += (target - current) * 0.12;
+      if (Math.abs(target - current) < 0.0008) current = target;
+      setHeroScrollProgress(current);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener('scroll', updateTarget, { passive: true });
+    rafId = requestAnimationFrame(tick);
+    return () => {
+      window.removeEventListener('scroll', updateTarget);
+      cancelAnimationFrame(rafId);
+    };
+  }, [heroScrollAnimation]);
+
+  useEffect(() => {
+    let target = 0;
+    let current = 0;
+    let rafId;
+
+    const updateTarget = () => {
+      if (heroScrollAnimation) {
+        target = Math.max(0, Math.min(1, (window.scrollY - 600) / 400));
+        return;
+      }
+      const node = heroExitRef.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      target = Math.max(0, Math.min(1, 1 - rect.bottom / 400));
+    };
+
+    const tick = () => {
+      current += (target - current) * 0.15;
+      if (Math.abs(target - current) < 0.001) current = target;
+      setHeroExitProgress(current);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    updateTarget();
+    window.addEventListener('scroll', updateTarget, { passive: true });
+    rafId = requestAnimationFrame(tick);
+    return () => {
+      window.removeEventListener('scroll', updateTarget);
+      cancelAnimationFrame(rafId);
+    };
+  }, [heroScrollAnimation]);
 
   useEffect(() => {
     const computeActive = () => {
@@ -198,13 +266,50 @@ export default function DetailPageTemplate({
 
   const textAlignDesktop = heroAlign === 'right' ? 'right' : heroAlign === 'center' ? 'center' : 'left';
 
+  const heroTitleStyle = {
+    ...(heroTitleGradient ? {
+      backgroundImage: heroTitleGradient,
+      WebkitBackgroundClip: 'text',
+      backgroundClip: 'text',
+      color: 'transparent',
+    } : {}),
+    ...(heroScrollAnimation ? {
+      opacity: heroMounted ? 1 : 0,
+      transform: heroMounted ? 'translateY(0)' : 'translateY(16px)',
+      transition: 'opacity 700ms ease, transform 700ms ease',
+    } : {}),
+  };
+  const heroImgStyle = heroScrollAnimation ? {
+    opacity: heroMounted ? 1 : 0,
+    transform: `scale(${(heroMounted ? 1 : 0.85) + heroScrollProgress * 0.2})`,
+    transition: 'opacity 700ms ease',
+  } : undefined;
+  const heroSubStyle = heroScrollAnimation ? {
+    opacity: heroScrollProgress,
+    transform: `translateY(${(1 - heroScrollProgress) * 16}px)`,
+  } : undefined;
+  const heroCreditStyle = {
+    ...(heroCreditGradient ? {
+      backgroundImage: heroCreditGradient,
+      WebkitBackgroundClip: 'text',
+      backgroundClip: 'text',
+      color: 'transparent',
+    } : {}),
+    ...(heroScrollAnimation ? {
+      opacity: heroScrollProgress,
+      transform: `translateY(${(1 - heroScrollProgress) * 16}px)`,
+    } : {}),
+  };
+
   return (
     <div style={{ width: '100%', '--dpt-gradient': accentGradient }}>
       <style>{`
-        .dpt-hero { position: relative; min-height: 80vh; overflow: hidden; background: linear-gradient(90deg, #c7c1be, #ffffff); display: flex; align-items: center; }
-        .dpt-hero-img { width: 100%; height: 100%; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-        .dpt-hero-img img { width: 60%; max-width: 480px; object-fit: contain; filter: drop-shadow(0 24px 50px rgba(0,0,0,0.18)); }
-        .dpt-hero-text { position: relative; z-index: 1; width: 100%; padding: 310px 24px 40px; text-align: center; }
+        .dpt-hero { position: relative; min-height: 100vh; overflow: hidden; background: linear-gradient(90deg, #c7c1be, #ffffff); display: flex; align-items: center; }
+        .dpt-hero-pin-wrap { position: relative; height: calc(100vh + 528px); }
+        .dpt-hero.dpt-hero-sticky { position: sticky; top: 72px; height: calc(100vh - 72px); min-height: calc(100vh - 72px); }
+        .dpt-hero-img { width: 100%; height: 520px; position: absolute; top: 0; left: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 340px; }
+        .dpt-hero-img img { width: auto; max-width: 60%; max-height: 100%; object-fit: contain; }
+        .dpt-hero-text { position: relative; z-index: 1; width: 100%; padding: 540px 24px 40px; text-align: center; }
         .dpt-watermark { font-size: 28px; font-weight: 800; letter-spacing: 0.04em; color: rgba(120,160,160,0.28); text-transform: uppercase; margin: 0 0 4px; }
         .dpt-hero-title { font-size: 22px; font-weight: 800; text-transform: uppercase; line-height: 1.2; margin: 0 0 14px; }
         .dpt-hero-title-line { display: block; }
@@ -230,11 +335,11 @@ export default function DetailPageTemplate({
         .dpt-callout { margin-bottom: 14px; }
         .dpt-callout-h { font-size: 12px; font-weight: 700; color: #8783c2; margin-bottom: 4px; }
         .dpt-callout-text { font-size: 12px; color: #9491c4; line-height: 1.75; margin: 0; }
-        .dpt-cards { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+        .dpt-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px; }
         .dpt-card { border: 1px solid; border-image-source: var(--dpt-gradient); border-image-slice: 1; padding: 12px 16px; }
         .dpt-card-h { font-size: 12px; font-weight: 700; color: #161616; margin-bottom: 4px; }
         .dpt-card-text { font-size: 11px; color: #4b5563; line-height: 1.6; margin: 0; }
-        .dpt-letter-nav { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; margin-bottom: 24px; }
+        .dpt-letter-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
         .dpt-letter-pill {
           display: flex; flex-direction: column; align-items: center; gap: 2px; border: 1px solid;
           border-image-source: var(--dpt-gradient); border-image-slice: 1;
@@ -299,9 +404,10 @@ export default function DetailPageTemplate({
         .dpt-wim-text { font-size: 11px; color: #4b5563; line-height: 1.7; text-transform: uppercase; letter-spacing: 0.02em; max-width: 640px; }
 
         @media(min-width: 768px) {
-          .dpt-hero { min-height: 80vh; }
-          .dpt-hero-img { justify-content: flex-start; }
-          .dpt-hero-img img { width: 42%; margin-left: 4%; }
+          .dpt-hero { min-height: 100vh; }
+          .dpt-letter-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+          .dpt-hero-img { justify-content: flex-start; align-items: center; height: 100%; padding-top: 0; }
+          .dpt-hero-img img { width: 42%; max-width: none; max-height: none; margin-left: 4%; }
           .dpt-hero-text { padding: 0 64px; text-align: ${textAlignDesktop}; ${heroAlign === 'right' ? 'margin-left: auto;' : 'margin-left: 48%;'} max-width: 600px; }
           .dpt-watermark { font-size: 52px; }
           .dpt-hero-title { font-size: 34px; }
@@ -332,47 +438,38 @@ export default function DetailPageTemplate({
         }
       `}</style>
 
-      <section className="dpt-hero">
-        <div className="dpt-hero-img">
-          <img src={heroImage} alt="" />
-        </div>
-        <div className="dpt-hero-text">
-          {heroWatermark && <div className="dpt-watermark">{heroWatermark}</div>}
-          <h1
-            className="dpt-hero-title"
-            style={heroTitleGradient ? {
-              backgroundImage: heroTitleGradient,
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
-            } : undefined}
-          >
-            {titleLines.map((line, li) => (
-              <span key={li} className="dpt-hero-title-line">
-                {line.map((part, i) => (
-                  <span key={i} style={heroTitleGradient ? undefined : { color: part.color }}>{part.text}</span>
-                ))}
-              </span>
-            ))}
-          </h1>
-          <p className="dpt-hero-sub">{heroSubtitle}</p>
-          {heroCredit && (
-            <p
-              className="dpt-hero-credit"
-              style={heroCreditGradient ? {
-                backgroundImage: heroCreditGradient,
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-              } : undefined}
-            >
-              {heroCredit.map((part, i) => (
-                <span key={i} style={heroCreditGradient ? undefined : { color: part.color }}>{part.text}</span>
+      <div className={heroScrollAnimation ? 'dpt-hero-pin-wrap' : undefined} style={{ position: 'relative' }}>
+        <section ref={heroExitRef} className={`dpt-hero${heroScrollAnimation ? ' dpt-hero-sticky' : ''}`}>
+          <div className="dpt-hero-img">
+            <img src={heroImage} alt="" style={heroImgStyle} />
+          </div>
+          <div className="dpt-hero-text">
+            {heroWatermark && <div className="dpt-watermark">{heroWatermark}</div>}
+            <h1 className="dpt-hero-title" style={heroTitleStyle}>
+              {titleLines.map((line, li) => (
+                <span key={li} className="dpt-hero-title-line">
+                  {line.map((part, i) => (
+                    <span key={i} style={heroTitleGradient ? undefined : { color: part.color }}>{part.text}</span>
+                  ))}
+                </span>
               ))}
-            </p>
-          )}
-        </div>
-      </section>
+            </h1>
+            <p className="dpt-hero-sub" style={heroSubStyle}>{heroSubtitle}</p>
+            {heroCredit && (
+              <p className="dpt-hero-credit" style={heroCreditStyle}>
+                {heroCredit.map((part, i) => (
+                  <span key={i} style={heroCreditGradient ? undefined : { color: part.color }}>{part.text}</span>
+                ))}
+              </p>
+            )}
+          </div>
+          <div style={{
+            position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
+            background: 'linear-gradient(90deg, #c7c1be, #ffffff)',
+            opacity: heroExitProgress,
+          }} />
+        </section>
+      </div>
 
       <div className="dpt-body">
         <div className="dpt-line-wrap"><FlowingLine /></div>
