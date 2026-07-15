@@ -68,25 +68,6 @@ export default function About() {
           .about-grid { grid-template-columns: repeat(2, 1fr); }
           .about-principles { grid-template-columns: repeat(4, 1fr); }
         }
-        @media(min-width: 1440px) {
-          .about-wrap { padding: 100px 60px 120px 520px; }
-          .about-title { font-size: 42px; }
-          .about-intro { font-size: 16px; }
-          .about-p { font-size: 15px; }
-          .about-foundation-title { font-size: 16px; }
-          .about-foundation-text { font-size: 14px; }
-          .about-card-title { font-size: 15px; }
-          .about-card-text { font-size: 14px; }
-          .about-principle-title { font-size: 15px; }
-          .about-principle-text { font-size: 14px; }
-          .about-quote { font-size: 17px; }
-          .about-foundations { gap: 36px; }
-        }
-        @media(min-width: 1920px) {
-          .about-wrap { padding: 120px 80px 140px 580px; }
-          .about-title { font-size: 52px; }
-          .about-p { font-size: 17px; }
-        }
       `}</style>
 
       <HomeIntro />

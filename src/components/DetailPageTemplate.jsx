@@ -433,35 +433,6 @@ export default function DetailPageTemplate({
           .dpt-cards { grid-template-columns: repeat(3, 1fr); }
           .dpt-card.full { grid-column: 1 / -1; }
         }
-        @media(min-width: 1440px) {
-          .dpt-hero-title { font-size: 48px; }
-          .dpt-hero-sub { font-size: 15px; max-width: 560px; }
-          .dpt-watermark { font-size: 72px; }
-          .dpt-hero-text { padding: 0 80px; max-width: 640px; }
-          .dpt-wrap { padding: 72px 60px 120px 520px; }
-          .dpt-item { grid-template-columns: 140px 1fr; gap: 0 48px; padding: 60px 0 60px 28px; }
-          .dpt-num { font-size: 100px; }
-          .dpt-title { font-size: 15px; }
-          .dpt-text { font-size: 13px; line-height: 1.85; }
-          .dpt-sub { font-size: 11px; }
-          .dpt-bullets li { font-size: 13px; }
-          .dpt-num-label { font-size: 15px; }
-          .dpt-num-label.large { font-size: 26px; }
-          .dpt-accent { font-size: 13px; }
-          .dpt-wim-text { font-size: 13px; }
-          .dpt-phase { font-size: 11px; padding: 6px 20px; margin: 72px 0 20px 28px; }
-        }
-        @media(min-width: 1920px) {
-          .dpt-hero-title { font-size: 60px; }
-          .dpt-hero-sub { font-size: 17px; }
-          .dpt-watermark { font-size: 90px; }
-          .dpt-wrap { padding: 88px 80px 140px 580px; }
-          .dpt-num { font-size: 120px; }
-          .dpt-title { font-size: 17px; }
-          .dpt-text { font-size: 15px; }
-          .dpt-bullets li { font-size: 15px; }
-        }
-
         @media (prefers-reduced-motion: reduce) {
           .dpt-item { transition: none; transform: none; }
           .dpt-item::before { transition: none; }
