@@ -117,6 +117,27 @@ const css = `
     .spt-hero-text { padding: 0 100px 0 40px; }
     .spt-hero-title { font-size: 52px; }
   }
+  @media(min-width: 1440px) {
+    .spt-hero-title { font-size: 64px; }
+    .spt-hero-sub { font-size: 15px; max-width: 520px; }
+    .spt-hero-num { font-size: 13px; }
+    .spt-hero-text { padding: 0 120px 0 48px; }
+    .spt-wrap { padding: 0 60px; }
+    .spt-item { grid-template-columns: 160px 1fr; gap: 0 48px; padding: 64px 0 64px 28px; }
+    .spt-num { font-size: 110px; }
+    .spt-title { font-size: 15px; }
+    .spt-text { font-size: 13px; line-height: 1.85; }
+    .spt-bullets li { font-size: 13px; }
+    .spt-accent { font-size: 13px; }
+  }
+  @media(min-width: 1920px) {
+    .spt-hero-title { font-size: 80px; }
+    .spt-hero-sub { font-size: 17px; }
+    .spt-num { font-size: 130px; }
+    .spt-title { font-size: 17px; }
+    .spt-text { font-size: 15px; }
+    .spt-bullets li { font-size: 15px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .spt-item,
     .spt-item::before,

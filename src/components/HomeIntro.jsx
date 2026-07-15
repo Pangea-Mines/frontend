@@ -215,6 +215,20 @@ export default function HomeIntro() {
           .home-hero-h1 { font-size: 38px; }
           .svc-card { flex: 0 0 calc((100% - 3 * 20px) / 4); }
         }
+        @media(min-width:1440px) {
+          .home-hero-h1 { font-size: 52px; }
+          .home-hero-sub { font-size: 15px; }
+          .home-hero-text { padding: 30vh 80px 0; }
+          .home-cards { padding: 64px 0 80px; }
+          .home-cards-inner { padding: 0 60px; }
+          .svc-card { flex: 0 0 calc((100% - 3 * 24px) / 4); }
+          .svc-card-title { font-size: 16px; }
+          .svc-card-link { font-size: 12px; }
+        }
+        @media(min-width:1920px) {
+          .home-hero-h1 { font-size: 68px; }
+          .home-hero-sub { font-size: 17px; }
+        }
       `}</style>
 
       {/* Hero + reflection, blurring into our gradient as it scrolls away */}
