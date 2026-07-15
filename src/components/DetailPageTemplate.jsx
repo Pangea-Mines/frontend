@@ -395,14 +395,14 @@ export default function DetailPageTemplate({
           background-image: var(--dpt-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
         }
 
-        .dpt-wim { margin-top: 48px; display: flex; align-items: center; gap: 24px; }
-        .dpt-wim-circle { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; background-image: radial-gradient(circle, #38bdf8 1.4px, transparent 1.6px); background-size: 5px 5px; opacity: 0.85; }
+        .dpt-wim { margin-top: 48px; display: flex; align-items: center; gap: 24px; justify-content: flex-end; }
+        .dpt-wim-circle { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; order: 2; background-image: radial-gradient(circle, #38bdf8 1.4px, transparent 1.6px); background-size: 5px 5px; opacity: 0.85; }
         .dpt-wim-tag {
-          display: inline-block; font-size: 13px; font-weight: 800; margin-bottom: 6px;
+          display: block; font-size: 13px; font-weight: 800; margin-bottom: 6px; text-align: right;
           background-image: var(--dpt-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
         }
         .dpt-wim-tag-line { display: block; }
-        .dpt-wim-text { font-size: 11px; color: #4b5563; line-height: 1.7; text-transform: uppercase; letter-spacing: 0.02em; max-width: 640px; }
+        .dpt-wim-text { font-size: 11px; color: #4b5563; line-height: 1.7; text-transform: uppercase; letter-spacing: 0.02em; max-width: 640px; text-align: right; }
 
         @media(min-width: 768px) {
           .dpt-hero { min-height: 100vh; }
