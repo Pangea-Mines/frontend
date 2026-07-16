@@ -1,7 +1,23 @@
 import { Link } from 'react-router-dom';
+import { useT } from '../content/useT';
 import { footerContent } from '../content/footer';
 
+const PAGE_PATHS = [
+  { key: 'company',       path: '/about' },
+  { key: 'resources',     path: '/resource-evaluation' },
+  { key: 'mining',        path: '/mine-planning' },
+  { key: 'laboratory',    path: '/laboratory' },
+  { key: 'environmental', path: '/environmental' },
+  { key: 'projectDesign', path: '/project-design' },
+  { key: 'expertise',     path: '/permits' },
+  { key: 'epcm',          path: '/commissioning' },
+  { key: 'experience',    path: '/experience' },
+];
+
 export default function Footer() {
+  const t = useT();
+  const pages = PAGE_PATHS.map((p) => ({ ...p, label: t.nav[p.key] }));
+
   return (
     <footer className="ftr">
       <style>{`
@@ -43,32 +59,33 @@ export default function Footer() {
       <div className="ftr-inner">
         <div className="ftr-grid">
           <div>
-            <img className="ftr-brand-name" src="/images/Logo/ChatGPT Image 11 мая 2026 г., 14_49_17 (1).png" alt={footerContent.brand.name} />
+            <img className="ftr-brand-name" src="/images/Logo/ChatGPT Image 11 мая 2026 г., 14_49_17 (1).png" alt="PANGEA" />
             <div className="ftr-brand-tag">
-              {footerContent.brand.taglineLines.map((line, i) => <div key={i}>{line}</div>)}
+              <div>{t.footer.tagline1}</div>
+              <div>{t.footer.tagline2}</div>
             </div>
           </div>
 
           <nav className="ftr-pages">
-            {footerContent.pages.map((page) => (
+            {pages.map((page) => (
               <Link key={page.path} to={page.path}>{page.label}</Link>
             ))}
           </nav>
 
           <div className="ftr-contacts">
-            <div className="ftr-contacts-name">{footerContent.contacts.company}</div>
-            <div>{footerContent.contacts.bin}</div>
-            <div>{footerContent.contacts.address}</div>
-            <div>{footerContent.contacts.phoneLabel} <a href={footerContent.contacts.phoneHref}>{footerContent.contacts.phone}</a></div>
-            <div>{footerContent.contacts.emailLabel} <a href={footerContent.contacts.emailHref}>{footerContent.contacts.email}</a></div>
+            <div className="ftr-contacts-name">{t.footer.company}</div>
+            <div>{t.footer.bin}</div>
+            <div>{t.footer.address}</div>
+            <div>{t.footer.phoneLabel} <a href={footerContent.contacts.phoneHref}>{footerContent.contacts.phone}</a></div>
+            <div>{t.footer.emailLabel} <a href={footerContent.contacts.emailHref}>{footerContent.contacts.email}</a></div>
           </div>
         </div>
 
         <div className="ftr-bottom">
-          <span>© 2026 Pangea PMG. Все права защищены</span>
+          <span>{t.footer.copyright}</span>
           <div className="ftr-bottom-links">
-            <a href="#">{footerContent.bottom.privacy}</a>
-            <a href="#">{footerContent.bottom.terms}</a>
+            <a href="#">{t.footer.privacy}</a>
+            <a href="#">{t.footer.terms}</a>
           </div>
         </div>
       </div>

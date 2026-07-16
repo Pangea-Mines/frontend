@@ -1,6 +1,10 @@
 import DetailPageTemplate from '../components/DetailPageTemplate';
-import { commissioningContent } from '../content/commissioning';
+import { useT } from '../content/useT';
+import { useLang } from '../context/LangContext';
+import { getCommissioningContent } from '../content/commissioning';
 
 export default function Commissioning() {
-  return <DetailPageTemplate {...commissioningContent} />;
+  const t = useT();
+  const { lang } = useLang();
+  return <DetailPageTemplate {...getCommissioningContent(t, lang)} />;
 }

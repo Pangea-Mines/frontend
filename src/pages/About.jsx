@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import FlowingLine from '../components/FlowingLine';
 import HomeIntro from '../components/HomeIntro';
-import { aboutContent } from '../content/about';
+import { useT } from '../content/useT';
+import { getAboutContent } from '../content/about';
 
 const ICONS = {
   target: (
@@ -27,6 +28,8 @@ const ICONS = {
 };
 
 export default function About() {
+  const t = useT();
+  const aboutContent = getAboutContent(t);
   return (
     <div style={{ width: '100%' }}>
       <style>{`

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { homeContent } from '../content/home';
+import { useT } from '../content/useT';
 
 const services = [
   { id: 'resourceEvaluation', path: '/resource-evaluation', borderColor: '#7c3aed' },
@@ -13,6 +13,7 @@ const services = [
 ];
 
 function ServicesCarousel() {
+  const t = useT();
   const trackRef = useRef(null);
   const cardRefs = useRef([]);
   const [active, setActive] = useState(0);
@@ -58,9 +59,9 @@ function ServicesCarousel() {
               className="svc-card"
               ref={(node) => { cardRefs.current[i] = node; if (node) node.dataset.index = i; }}
             >
-              <h3 className="svc-card-title">{homeContent.services[svc.id]}</h3>
+              <h3 className="svc-card-title">{t.home.services[svc.id]}</h3>
               <div className="svc-card-link" style={{ color: svc.borderColor }}>
-                {homeContent.servicesCta}
+                {t.home.servicesCta}
                 <svg width="20" height="8" viewBox="0 0 20 8" fill="none">
                   <path d="M0 4h18M14 1l4 3-4 3" stroke="currentColor" strokeWidth="1.3" />
                 </svg>
@@ -81,7 +82,7 @@ function ServicesCarousel() {
             type="button"
             className={`svc-dot${active === i ? ' is-active' : ''}`}
             onClick={() => scrollToIndex(i)}
-            aria-label={homeContent.services[svc.id]}
+            aria-label={t.home.services[svc.id]}
           />
         ))}
       </div>
@@ -90,6 +91,7 @@ function ServicesCarousel() {
 }
 
 export default function HomeIntro() {
+  const t = useT();
   const heroBlockRef = useRef(null);
   const [exitProgress, setExitProgress] = useState(0);
 
@@ -223,13 +225,13 @@ export default function HomeIntro() {
           <img src="/images/Hero/559757 (1).png" className="home-hero-bg" alt="Landscape" />
           <div className="home-hero-text">
             <h1 className="home-hero-h1">
-              {homeContent.hero.titleLines.map((line, i) => (
+              {[t.home.heroTitle1, t.home.heroTitle2].map((line, i) => (
                 <span key={i} className="home-hero-h1-line">{line}</span>
               ))}
             </h1>
-            <p className="home-hero-sub">{homeContent.hero.subtitle}</p>
+            <p className="home-hero-sub">{t.home.heroSubtitle}</p>
             <Link to="/resource-evaluation" className="home-cta">
-              <span className="home-cta-label">{homeContent.hero.cta}</span>
+              <span className="home-cta-label">{t.home.heroCta}</span>
               <svg width="24" height="10" viewBox="0 0 24 10" fill="none">
                 <path d="M0 5h22M17 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5"/>
               </svg>

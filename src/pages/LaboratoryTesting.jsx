@@ -1,6 +1,10 @@
 import DetailPageTemplate from '../components/DetailPageTemplate';
-import { laboratoryContent } from '../content/laboratory';
+import { useT } from '../content/useT';
+import { useLang } from '../context/LangContext';
+import { getLaboratoryContent } from '../content/laboratory';
 
 export default function LaboratoryTesting() {
-  return <DetailPageTemplate {...laboratoryContent} />;
+  const t = useT();
+  const { lang } = useLang();
+  return <DetailPageTemplate {...getLaboratoryContent(t, lang)} />;
 }

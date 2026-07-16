@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { navContent } from '../content/nav';
+import { useLang } from '../context/LangContext';
+import { useT } from '../content/useT';
 
-const navLinks = [
-  { label: navContent.company,       path: '/about',              gradient: 'linear-gradient(90deg, #3a206d, #ff724d)' },
-  { label: navContent.resources,     path: '/resource-evaluation', gradient: 'linear-gradient(90deg, #471004, #08c5d1)' },
-  { label: navContent.mining,        path: '/mine-planning',       gradient: 'linear-gradient(90deg, #645330, #419eff, #007dff)' },
-  { label: navContent.laboratory,    path: '/laboratory',          gradient: 'linear-gradient(90deg, #a28a5a, #4685c4, #3a546b)' },
-  { label: navContent.environmental, path: '/environmental',       gradient: 'linear-gradient(90deg, #847e72, #72ad05, #174900)' },
-  { label: navContent.projectDesign, path: '/project-design',      gradient: 'linear-gradient(90deg, #683008, rgba(1,41,213,0.23))' },
-  { label: navContent.expertise,     path: '/permits',             gradient: 'linear-gradient(90deg, #3a3f47, rgba(182,0,0,0.23))' },
-  { label: navContent.epcm,          path: '/commissioning',       gradient: 'linear-gradient(90deg, #000000, #3533cd)' },
-  { label: navContent.experience,    path: '/experience',          gradient: 'linear-gradient(90deg, #1a1a1a, #52525b)' },
+const NAV_ITEMS = [
+  { key: 'company',       path: '/about',               gradient: 'linear-gradient(90deg, #3a206d, #ff724d)' },
+  { key: 'resources',     path: '/resource-evaluation', gradient: 'linear-gradient(90deg, #471004, #08c5d1)' },
+  { key: 'mining',        path: '/mine-planning',       gradient: 'linear-gradient(90deg, #645330, #419eff, #007dff)' },
+  { key: 'laboratory',    path: '/laboratory',          gradient: 'linear-gradient(90deg, #a28a5a, #4685c4, #3a546b)' },
+  { key: 'environmental', path: '/environmental',       gradient: 'linear-gradient(90deg, #847e72, #72ad05, #174900)' },
+  { key: 'projectDesign', path: '/project-design',      gradient: 'linear-gradient(90deg, #683008, rgba(1,41,213,0.23))' },
+  { key: 'expertise',     path: '/permits',             gradient: 'linear-gradient(90deg, #3a3f47, rgba(182,0,0,0.23))' },
+  { key: 'epcm',          path: '/commissioning',       gradient: 'linear-gradient(90deg, #000000, #3533cd)' },
+  { key: 'experience',    path: '/experience',          gradient: 'linear-gradient(90deg, #1a1a1a, #52525b)' },
 ];
 
-const LANGS = ['RU', 'EN', 'KZ'];
+const LANGS = ['RU', 'EN'];
 
 export default function Navbar() {
-  const [activeLang, setActiveLang] = useState('RU');
-  const [langOpen, setLangOpen]     = useState(false);
-  const [menuOpen, setMenuOpen]     = useState(false);
-  const [isDesktop, setIsDesktop]   = useState(() => window.innerWidth >= 1024);
+  const { lang, setLang } = useLang();
+  const t = useT();
+  const navLinks = NAV_ITEMS.map((item) => ({ ...item, label: t.nav[item.key] }));
+
+  const [langOpen, setLangOpen]   = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 1024);
 
   useEffect(() => {
     const fn = () => {
@@ -37,7 +41,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  const label = (link) => activeLang === 'EN' ? link.label.en : link.label.ru;
+  const displayLang = lang === 'en' ? 'EN' : 'RU';
 
   return (
     <>
@@ -73,7 +77,7 @@ export default function Navbar() {
                     color: isActive ? 'transparent' : '#9ca3af',
                   })}
                 >
-                  {label(link)}
+                  {link.label}
                 </NavLink>
               ))}
             </nav>
@@ -92,18 +96,18 @@ export default function Navbar() {
                 <path d="M1 4h9M5 1v3M6 13s-1-2-2-4.5M10 13s-1-2-2-4.5" />
                 <path d="M13 8l3.5-3.5 3.5 3.5M16.5 4.5v8" />
               </svg>
-              {activeLang}
+              {displayLang}
               <svg width="7" height="4" viewBox="0 0 7 4" fill="currentColor"><path d="M0 0l3.5 4L7 0H0z" /></svg>
             </button>
             {langOpen && (
               <div style={{ position: 'absolute', right: 0, top: '100%', marginTop: 6, background: 'linear-gradient(90deg, #c7c1be, #ffffff)', border: '1px solid #e5e7eb', boxShadow: '0 4px 16px rgba(0,0,0,0.10)', zIndex: 100 }}>
-                {LANGS.map((lang) => (
-                  <button key={lang} onClick={() => { setActiveLang(lang); setLangOpen(false); }} style={{
+                {LANGS.map((l) => (
+                  <button key={l} onClick={() => { setLang(l.toLowerCase()); setLangOpen(false); }} style={{
                     display: 'block', width: '100%', textAlign: 'left', padding: '8px 20px',
                     fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', border: 'none', cursor: 'pointer',
-                    background: activeLang === lang ? '#111' : 'transparent',
-                    color: activeLang === lang ? '#fff' : '#555',
-                  }}>{lang}</button>
+                    background: lang === l.toLowerCase() ? '#111' : 'transparent',
+                    color: lang === l.toLowerCase() ? '#fff' : '#555',
+                  }}>{l}</button>
                 ))}
               </div>
             )}
@@ -149,7 +153,7 @@ export default function Navbar() {
                 fontSize: 18, letterSpacing: '0.06em',
               })}
             >
-              {label(link)}
+              {link.label}
             </NavLink>
           ))}
         </nav>

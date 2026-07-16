@@ -1,6 +1,10 @@
 import DetailPageTemplate from '../components/DetailPageTemplate';
-import { environmentalContent } from '../content/environmental';
+import { useT } from '../content/useT';
+import { useLang } from '../context/LangContext';
+import { getEnvironmentalContent } from '../content/environmental';
 
 export default function Environmental() {
-  return <DetailPageTemplate {...environmentalContent} />;
+  const t = useT();
+  const { lang } = useLang();
+  return <DetailPageTemplate {...getEnvironmentalContent(t, lang)} />;
 }

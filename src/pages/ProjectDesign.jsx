@@ -1,6 +1,10 @@
 import DetailPageTemplate from '../components/DetailPageTemplate';
-import { projectDesignContent } from '../content/projectDesign';
+import { useT } from '../content/useT';
+import { useLang } from '../context/LangContext';
+import { getProjectDesignContent } from '../content/projectDesign';
 
 export default function ProjectDesign() {
-  return <DetailPageTemplate {...projectDesignContent} />;
+  const t = useT();
+  const { lang } = useLang();
+  return <DetailPageTemplate {...getProjectDesignContent(t, lang)} />;
 }

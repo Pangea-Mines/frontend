@@ -1,6 +1,10 @@
 import DetailPageTemplate from '../components/DetailPageTemplate';
-import { minePlanningContent } from '../content/minePlanning';
+import { useT } from '../content/useT';
+import { useLang } from '../context/LangContext';
+import { getMinePlanningContent } from '../content/minePlanning';
 
 export default function MinePlanning() {
-  return <DetailPageTemplate {...minePlanningContent} />;
+  const t = useT();
+  const { lang } = useLang();
+  return <DetailPageTemplate {...getMinePlanningContent(t, lang)} />;
 }

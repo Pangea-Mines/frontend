@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { experienceContent } from '../content/experience';
+import { useT } from '../content/useT';
 
 export default function Experience() {
+  const t = useT();
   const sectionRef = useRef(null);
   const trackRef   = useRef(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
   const { projects } = experienceContent;
+
+  const getTitle = (project) => project.i18nKey ? t.experience[`${project.i18nKey}_title`] : project.titleRu;
+  const getDesc  = (project) => project.i18nKey ? t.experience[`${project.i18nKey}_desc`]  : project.descRu;
+  const getLabel = (obj) => obj.labelKey ? (t.experience[obj.labelKey] || obj.label || obj.text) : (obj.label || obj.text);
   const N = projects.length;
 
   const textPosStyle = {
@@ -187,16 +193,16 @@ export default function Experience() {
                 <img
                   src={project.cover}
                   className={`exp-mobile-img${project.imageContain ? ' contain' : ''}`}
-                  alt={project.titleRu || ''}
+                  alt={getTitle(project) || ''}
                   loading={i === 0 ? 'eager' : 'lazy'}
                 />
               </div>
-              {project.titleRu && (
+              {project.i18nKey && (
                 <div className="exp-mobile-text">
                   <span className="exp-project-num">{String(i + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}</span>
                   <div className="exp-mobile-divider" />
-                  <h2 className="exp-project-title">{project.titleRu}</h2>
-                  <p className="exp-project-desc">{project.descRu}</p>
+                  <h2 className="exp-project-title">{getTitle(project)}</h2>
+                  <p className="exp-project-desc">{getDesc(project)}</p>
                 </div>
               )}
             </div>
@@ -217,28 +223,28 @@ export default function Experience() {
                     <img
                       src={project.cover}
                       className="exp-img-main"
-                      alt={project.titleRu}
+                      alt={getTitle(project) || ''}
                       loading={i === 0 ? 'eager' : 'lazy'}
                       style={project.imageContain ? { objectFit: 'contain' } : {}}
                     />
                     {(project.subImages || []).map((sub, si) => (
                       <div key={si} className="exp-sub-wrap"
                         style={{ ...subPosBase[sub.pos], display: 'flex', flexDirection: 'column', ...(sub.style || {}) }}>
-                        {sub.label && <span className="exp-sub-label" style={sub.labelStyle || {}}>{sub.label}</span>}
-                        <img src={sub.src} alt={sub.label || ''} loading="lazy" />
+                        {(sub.label || sub.labelKey) && <span className="exp-sub-label" style={sub.labelStyle || {}}>{getLabel(sub)}</span>}
+                        <img src={sub.src} alt={getLabel(sub) || ''} loading="lazy" />
                       </div>
                     ))}
                     {project.mainLabel && (
                       <span className={`exp-main-label exp-main-label-${project.mainLabel.pos}`}>
-                        {project.mainLabel.text}
+                        {getLabel(project.mainLabel)}
                       </span>
                     )}
                   </div>
-                  {project.titleRu && !project.hideText && (
+                  {project.i18nKey && !project.hideText && (
                     <div className="exp-text-block" style={{ ...textPosStyle[project.textPos || 'tr'], ...(project.textStyle || {}) }}>
                       <span className="exp-project-num" style={project.textWhite ? { color: 'rgba(255,255,255,0.6)' } : {}}>{String(i + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}</span>
-                      <h2 className="exp-project-title" style={project.textWhite ? { color: '#fff' } : {}}>{project.titleRu}</h2>
-                      <p className="exp-project-desc" style={project.textWhite ? { color: 'rgba(255,255,255,0.8)' } : {}}>{project.descRu}</p>
+                      <h2 className="exp-project-title" style={project.textWhite ? { color: '#fff' } : {}}>{getTitle(project)}</h2>
+                      <p className="exp-project-desc" style={project.textWhite ? { color: 'rgba(255,255,255,0.8)' } : {}}>{getDesc(project)}</p>
                     </div>
                   )}
                 </div>

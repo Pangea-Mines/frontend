@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LangProvider } from './context/LangContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -15,6 +16,7 @@ import Experience         from './pages/Experience';
 
 export default function App() {
   return (
+    <LangProvider>
     <BrowserRouter>
       <ScrollToTop />
       <Navbar />
@@ -34,5 +36,6 @@ export default function App() {
       </main>
       <Footer />
     </BrowserRouter>
+    </LangProvider>
   );
 }

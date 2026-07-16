@@ -2,30 +2,33 @@ export const experienceContent = {
   projects: [
     {
       id: 'tesiktas-1',
+      i18nKey: 'tesiktas',
       cover: '/images/Projects/2.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
-      mainLabel: { text: 'Главный корпус обогатительной фабрики', pos: 'tc' },
+      mainLabel: { text: 'Главный корпус обогатительной фабрики', pos: 'tc', labelKey: 'tesiktas_label_main' },
       subImages: [
-        { src: '/images/Projects/4.jpg', label: 'Участок дробления и обогащения', pos: 'tl' },
+        { src: '/images/Projects/4.jpg', label: 'Участок дробления и обогащения', pos: 'tl', labelKey: 'tesiktas_label_sub1' },
       ],
       titleRu: 'Медная обогатительная фабрика «Тесиктас»',
       descRu: 'Производительность 1,5 млн тонн руды в год. Проектирование выполнено по технологии Xinhai Mining. Адаптация проекта под нормативы Республики Казахстан — Pangea.',
     },
     {
       id: 'water-supply',
+      i18nKey: 'water',
       cover: '/images/Projects/17.jpg',
       hideText: true,
-      mainLabel: { text: 'Оборотное водоснабжение обогатительной фабрики', pos: 'tc' },
+      mainLabel: { text: 'Оборотное водоснабжение обогатительной фабрики', pos: 'tc', labelKey: 'water_label_main' },
       subImages: [
-        { src: '/images/Projects/13 (1).jpg', label: 'Участок измельчения', pos: 'tr' },
-        { src: '/images/Projects/18.jpg', label: 'Участок фильтрации', pos: 'bl', style: { bottom: 60 } },
+        { src: '/images/Projects/13 (1).jpg', label: 'Участок измельчения', pos: 'tr', labelKey: 'water_label_sub1' },
+        { src: '/images/Projects/18.jpg', label: 'Участок фильтрации', pos: 'bl', style: { bottom: 60 }, labelKey: 'water_label_sub2' },
       ],
       titleRu: 'Оборотное водоснабжение обогатительной фабрики',
       descRu: 'Комплексная система водооборота. Включает участки измельчения, фильтрации и оборотного водоснабжения производственного процесса.',
     },
     {
       id: 'ushtogan',
+      i18nKey: 'ushtogan',
       cover: '/images/Projects/1.jpg.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
@@ -35,6 +38,7 @@ export const experienceContent = {
     },
     {
       id: 'gotovaya-produktsiya',
+      i18nKey: 'finished',
       cover: '/images/Projects/8 (1).jpg',
       textPos: 'bl',
       titleRu: 'Участок готовой продукции',
@@ -42,6 +46,7 @@ export const experienceContent = {
     },
     {
       id: 'sulfuric-acid',
+      i18nKey: 'sulfuric',
       cover: '/images/Projects/11 (1).jpg',
       textPos: 'tl',
       titleRu: 'Склад серной кислоты 92%',
@@ -49,17 +54,19 @@ export const experienceContent = {
     },
     {
       id: 'bugetkol-battery',
+      i18nKey: 'bugetkol_battery',
       cover: '/images/Projects/13.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
       subImages: [
-        { src: '/images/Projects/отделение рудоподготовки.jpg', label: 'Отделение рудоподготовки', pos: 'tl', style: { width: '48%', top: '180px', left: '10px', alignItems: 'flex-start' }, labelStyle: { marginLeft: '64px', marginTop: '-22px' }},
+        { src: '/images/Projects/отделение рудоподготовки.jpg', label: 'Отделение рудоподготовки', pos: 'tl', labelKey: 'bugetkol_battery_label_sub1', style: { width: '48%', top: '180px', left: '10px', alignItems: 'flex-start' }, labelStyle: { marginLeft: '64px', marginTop: '-22px' } },
       ],
       titleRu: 'Месторождение «Бугетколь»: Гидрометаллургический завод по производству батарейного сульфата никеля',
       descRu: 'Инновационный проект переработки никелевой руды на базе передовых гидрометаллургических технологий. Технологические решения завода ориентированы на выпуск высокочистой продукции премиум-класса, полностью отвечающей жёстким международным стандартам ESG и глобальных цепочек поставок аккумуляторов (Battery-grade).',
     },
     {
       id: 'almaly-sx',
+      i18nKey: 'almaly',
       cover: '/images/Projects/Kyzyl aray pipe.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
@@ -68,6 +75,7 @@ export const experienceContent = {
     },
     {
       id: 'kaz-minerals',
+      i18nKey: 'kaz',
       cover: '/images/Projects/10 (1).jpg',
       textPos: 'bl',
       titleRu: 'Комплекс усреднения концентратов для KAZ Minerals',
@@ -79,6 +87,7 @@ export const experienceContent = {
     },
     {
       id: 'cu-ni-flotation',
+      i18nKey: 'cu_ni',
       cover: '/images/Projects/19.jpg',
       textPos: 'bl',
       titleRu: 'Обогатительная фабрика по переработке медно-никелевых сульфидных руд (1,2 млн тонн в год)',
@@ -86,6 +95,7 @@ export const experienceContent = {
     },
     {
       id: 'bugetkol-laterite',
+      i18nKey: 'bugetkol_laterite',
       cover: '/images/Projects/3.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
@@ -94,6 +104,7 @@ export const experienceContent = {
     },
     {
       id: 'strezhanskoe',
+      i18nKey: 'strezhanskoe',
       cover: '/images/Projects/Сборка СТРЕЖАНСК.jpg',
       textPos: 'bl',
       imageContain: true,
@@ -102,6 +113,7 @@ export const experienceContent = {
     },
     {
       id: 'akmaya',
+      i18nKey: 'akmaya',
       cover: '/images/Projects/WAK OBSH.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
@@ -110,6 +122,7 @@ export const experienceContent = {
     },
     {
       id: 'ayak-kodzhan',
+      i18nKey: 'ayak',
       cover: '/images/Projects/11.jpg',
       textPos: 'bl',
       titleRu: 'Месторождение «Аяк-Коджан»: Проектирование трехстадиальной системы дробления',
@@ -117,10 +130,11 @@ export const experienceContent = {
     },
     {
       id: 'energy',
+      i18nKey: 'energy',
       cover: '/images/Projects/209-ВК-ТХ.jpg',
       textPos: 'bl',
       subImages: [
-        { src: '/images/Projects/15 (1).jpg', label: 'Угольная котельная', pos: 'tr',
+        { src: '/images/Projects/15 (1).jpg', label: 'Угольная котельная', pos: 'tr', labelKey: 'energy_label_sub1',
           style: { flexDirection: 'row', alignItems: 'center', gap: '4px', width: '30%', top: '40px' },
           labelStyle: { marginBottom: 0 } },
       ],
@@ -129,6 +143,7 @@ export const experienceContent = {
     },
     {
       id: 'bakennoe',
+      i18nKey: 'bakennoe',
       cover: '/images/Projects/10.jpg',
       textPos: 'br',
       textStyle: { textAlign: 'left' },
@@ -138,6 +153,7 @@ export const experienceContent = {
     },
     {
       id: 'ni-sulfate-plant',
+      i18nKey: 'ni_sulfate',
       cover: '/images/Projects/snapshot (2).jpg',
       textPos: 'br',
       textWhite: true,
