@@ -17,24 +17,9 @@ function ServicesCarousel() {
   const trackRef = useRef(null);
   const cardRefs = useRef([]);
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
 
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return undefined;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const mostVisible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (mostVisible) setActive(Number(mostVisible.target.dataset.index));
-      },
-      { root: track, threshold: 0.6 }
-    );
-
-    cardRefs.current.forEach((node) => node && observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
+  const setIdx = (i) => { activeRef.current = i; setActive(i); };
 
   const scrollToIndex = (i) => {
     const track = trackRef.current;
@@ -43,10 +28,29 @@ function ServicesCarousel() {
     const trackRect = track.getBoundingClientRect();
     const cardRect = card.getBoundingClientRect();
     track.scrollTo({ left: track.scrollLeft + cardRect.left - trackRect.left, behavior: 'smooth' });
+    setIdx(i);
   };
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const mostVisible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (mostVisible) setIdx(Number(mostVisible.target.dataset.index));
+      },
+      { root: track, threshold: 0.6 }
+    );
+
+    cardRefs.current.forEach((node) => node && observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+
   const step = (dir) => {
-    scrollToIndex(Math.max(0, Math.min(services.length - 1, active + dir)));
+    scrollToIndex(Math.max(0, Math.min(services.length - 1, activeRef.current + dir)));
   };
 
   return (
