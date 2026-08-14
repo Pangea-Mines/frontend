@@ -40,7 +40,9 @@ function ServicesCarousel() {
     const track = trackRef.current;
     const card = cardRefs.current[i];
     if (!track || !card) return;
-    track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
+    const trackRect = track.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    track.scrollTo({ left: track.scrollLeft + cardRect.left - trackRect.left, behavior: 'smooth' });
   };
 
   const step = (dir) => {
