@@ -4,7 +4,6 @@ const BASE = {
   heroAlign: 'left',
   accentColor: '#3b4f8c',
   heroScrollAnimation: true,
-  heroImageSize: { maxWidth: '42%', maxHeight: '165px' },
 };
 
 export function getMinePlanningContent(t, lang) {
