@@ -126,6 +126,7 @@ export default function DetailPageTemplate({
   heroAlign = 'center',
   accentColor = '#92400e',
   heroScrollAnimation = false,
+  heroImageSize,
   items,
   whyItMatters,
   overviewButton,
@@ -442,7 +443,7 @@ export default function DetailPageTemplate({
       <div className={heroScrollAnimation ? 'dpt-hero-pin-wrap' : undefined} style={{ position: 'relative' }}>
         <section ref={heroExitRef} className={`dpt-hero${heroScrollAnimation ? ' dpt-hero-sticky' : ''}`}>
           <div className="dpt-hero-img">
-            <img src={heroImage} alt="" style={heroImgStyle} />
+            <img src={heroImage} alt="" style={{ ...heroImgStyle, ...(heroImageSize || {}) }} />
           </div>
           <div className="dpt-hero-text">
             {heroWatermark && <div className="dpt-watermark">{heroWatermark}</div>}

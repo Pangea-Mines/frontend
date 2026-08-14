@@ -37,7 +37,10 @@ function ServicesCarousel() {
   }, []);
 
   const scrollToIndex = (i) => {
-    cardRefs.current[i]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    const track = trackRef.current;
+    const card = cardRefs.current[i];
+    if (!track || !card) return;
+    track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
   };
 
   const step = (dir) => {
@@ -121,7 +124,7 @@ export default function HomeIntro() {
   }, []);
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', background: 'linear-gradient(90deg, #c7c1be, #ffffff)' }}>
       <style>{`
         .home-hero {
           position: relative; min-height: calc(100svh - 72px); overflow: hidden;

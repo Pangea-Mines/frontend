@@ -5,7 +5,7 @@ export function getProjectDesignContent(t, lang) {
   const PHASE_3 = { label: tpd.phase3, color: '#fb923c' };
 
   return {
-    heroImage: '/images/Stones/47857-97-Photoroom.png',
+    heroImage: '/images/Stones/ChatGPT Image 12 мая 2026 г., 14_22_59.png',
     heroTitleLines: lang === 'en'
       ? [
           [{ text: 'PROJECT DESIGN AND', color: '#7a2e2e' }],

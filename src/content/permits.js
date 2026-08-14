@@ -4,6 +4,7 @@ const BASE = {
   heroAlign: 'left',
   accentColor: '#9a2f2f',
   heroScrollAnimation: true,
+  heroImageSize: { maxWidth: '62%', maxHeight: '240px' },
 };
 
 export function getPermitsContent(t, lang) {
