@@ -15,7 +15,11 @@ const NAV_ITEMS = [
   { key: 'experience',    path: '/experience',          gradient: 'linear-gradient(90deg, #1a1a1a, #52525b)' },
 ];
 
-const LANGS = ['RU', 'EN'];
+const LANGS = [
+  { label: 'RU', code: 'ru' },
+  { label: 'EN', code: 'en' },
+  { label: 'CHN', code: 'zh' },
+];
 
 export default function Navbar() {
   const { lang, setLang } = useLang();
@@ -41,7 +45,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  const displayLang = lang === 'en' ? 'EN' : 'RU';
+  const displayLang = LANGS.find((l) => l.code === lang)?.label ?? 'RU';
 
   return (
     <>
@@ -102,12 +106,12 @@ export default function Navbar() {
             {langOpen && (
               <div style={{ position: 'absolute', right: 0, top: '100%', marginTop: 6, background: 'linear-gradient(90deg, #c7c1be, #ffffff)', border: '1px solid #e5e7eb', boxShadow: '0 4px 16px rgba(0,0,0,0.10)', zIndex: 100 }}>
                 {LANGS.map((l) => (
-                  <button key={l} onClick={() => { setLang(l.toLowerCase()); setLangOpen(false); }} style={{
+                  <button key={l.code} onClick={() => { setLang(l.code); setLangOpen(false); }} style={{
                     display: 'block', width: '100%', textAlign: 'left', padding: '8px 20px',
                     fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', border: 'none', cursor: 'pointer',
-                    background: lang === l.toLowerCase() ? '#111' : 'transparent',
-                    color: lang === l.toLowerCase() ? '#fff' : '#555',
-                  }}>{l}</button>
+                    background: lang === l.code ? '#111' : 'transparent',
+                    color: lang === l.code ? '#fff' : '#555',
+                  }}>{l.label}</button>
                 ))}
               </div>
             )}
