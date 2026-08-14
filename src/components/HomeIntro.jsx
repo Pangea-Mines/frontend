@@ -135,7 +135,7 @@ export default function HomeIntro() {
         .home-hero {
           position: relative; min-height: calc(100svh - 72px); overflow: hidden;
           display: flex; align-items: flex-start;
-          background: linear-gradient(180deg, #c8c0b8 0%, #d4cdc5 40%, #e0d9d1 100%);
+          background: linear-gradient(90deg, #c7c1be, #ffffff);
         }
         .home-hero-bg {
           position: absolute; left: 50%; bottom: 0; width: auto; height: 38vh; max-width: none;
