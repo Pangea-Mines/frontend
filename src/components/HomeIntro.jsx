@@ -17,46 +17,53 @@ function ServicesCarousel() {
   const trackRef = useRef(null);
   const cardRefs = useRef([]);
   const [active, setActive] = useState(0);
-  const activeRef = useRef(0);
-
-  const setIdx = (i) => { activeRef.current = i; setActive(i); };
-
-  const scrollToIndex = (i) => {
-    const track = trackRef.current;
-    const card = cardRefs.current[i];
-    if (!track || !card) return;
-    const trackRect = track.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
-    track.scrollTo({ left: track.scrollLeft + cardRect.left - trackRect.left, behavior: 'smooth' });
-    setIdx(i);
-  };
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return undefined;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const mostVisible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (mostVisible) setIdx(Number(mostVisible.target.dataset.index));
-      },
-      { root: track, threshold: 0.6 }
-    );
+    const update = () => {
+      setAtStart(track.scrollLeft <= 2);
+      setAtEnd(track.scrollLeft >= track.scrollWidth - track.clientWidth - 2);
+      const tLeft = track.getBoundingClientRect().left;
+      let best = 0, bestDist = Infinity;
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        const d = Math.abs(card.getBoundingClientRect().left - tLeft);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      setActive(best);
+    };
 
-    cardRefs.current.forEach((node) => node && observer.observe(node));
-    return () => observer.disconnect();
+    track.addEventListener('scroll', update, { passive: true });
+    update();
+    return () => track.removeEventListener('scroll', update);
   }, []);
 
+  const scrollToIndex = (i) => {
+    const track = trackRef.current;
+    const card = cardRefs.current[i];
+    if (!track || !card) return;
+    const tRect = track.getBoundingClientRect();
+    const cRect = card.getBoundingClientRect();
+    track.scrollTo({ left: track.scrollLeft + cRect.left - tRect.left, behavior: 'smooth' });
+  };
+
   const step = (dir) => {
-    scrollToIndex(Math.max(0, Math.min(services.length - 1, activeRef.current + dir)));
+    const track = trackRef.current;
+    const c0 = cardRefs.current[0];
+    const c1 = cardRefs.current[1];
+    if (!track || !c0 || !c1) return;
+    const cardStep = c1.getBoundingClientRect().left - c0.getBoundingClientRect().left;
+    track.scrollBy({ left: dir * cardStep, behavior: 'smooth' });
   };
 
   return (
     <>
       <div className="svc-carousel">
-        <button type="button" className="svc-arrow" onClick={() => step(-1)} disabled={active === 0} aria-label="prev">
+        <button type="button" className="svc-arrow" onClick={() => step(-1)} disabled={atStart} aria-label="prev">
           <svg width="9" height="16" viewBox="0 0 9 16" fill="none"><path d="M8 1L1 8l7 7" stroke="currentColor" strokeWidth="1.5" /></svg>
         </button>
 
@@ -79,7 +86,7 @@ function ServicesCarousel() {
           ))}
         </div>
 
-        <button type="button" className="svc-arrow" onClick={() => step(1)} disabled={active === services.length - 1} aria-label="next">
+        <button type="button" className="svc-arrow" onClick={() => step(1)} disabled={atEnd} aria-label="next">
           <svg width="9" height="16" viewBox="0 0 9 16" fill="none"><path d="M1 1l7 7-7 7" stroke="currentColor" strokeWidth="1.5" /></svg>
         </button>
       </div>
@@ -250,7 +257,7 @@ export default function HomeIntro() {
 
         {/* Reflection of hero background, mirrored */}
         <div className="home-hero-reflection">
-          <img src="/images/Hero/559 (1) reverse.png" alt="" aria-hidden="true" />
+          <img src="/images/Hero/559757_1_copy_rotated.png" alt="" aria-hidden="true" />
         </div>
 
         <div style={{
