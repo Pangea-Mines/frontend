@@ -141,7 +141,7 @@ export default function HomeIntro() {
         .home-hero-reflection {
           display: none;
           position: relative; width: 100%; line-height: 0;
-          background: linear-gradient(180deg,#d8d0c8 0%,#e8e2db 100%);
+          background: transparent;
         }
         .home-hero-reflection img {
           display: block; width: 100%; height: auto;
@@ -174,7 +174,7 @@ export default function HomeIntro() {
         }
 
         /* Services section */
-        .home-cards { background: linear-gradient(90deg, #c7c1be, #ffffff); padding: 0 0 60px; }
+        .home-cards { background: linear-gradient(90deg, #c7c1be, #ffffff); padding: 48px 0 60px; }
         .home-cards-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
 
         .svc-carousel { display: flex; align-items: center; gap: 10px; }
