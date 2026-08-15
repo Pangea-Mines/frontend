@@ -11,29 +11,6 @@ export function getLaboratoryContent(t, lang) {
   const tl = t.laboratory;
   return {
     ...BASE,
-    heroCredit: lang === 'en'
-      ? [
-          { text: 'Branch', color: '#2563eb' },
-          { text: 'RSE', color: '#7a2e2e' },
-          { text: '«NC CPMRM RK»', color: '#161616' },
-          { text: 'SNPOE', color: '#15803d' },
-          { text: '«Kazmekhanobr»', color: '#c2680c' },
-        ]
-      : lang === 'zh'
-      ? [
-          { text: '分支机构', color: '#2563eb' },
-          { text: 'РГП', color: '#7a2e2e' },
-          { text: '«НЦ КПМС РК»', color: '#161616' },
-          { text: 'ГНПОПЭ', color: '#15803d' },
-          { text: '«Казмеханобр»', color: '#c2680c' },
-        ]
-      : [
-          { text: 'Филиал', color: '#2563eb' },
-          { text: 'РГП', color: '#7a2e2e' },
-          { text: '«НЦ КПМС РК»', color: '#161616' },
-          { text: 'ГНПОПЭ', color: '#15803d' },
-          { text: '«Казмеханобр»', color: '#c2680c' },
-        ],
     heroTitleLines: lang === 'en'
       ? [
           [{ text: 'ANALYTICAL LABORATORY', color: '#6b6b3a' }],

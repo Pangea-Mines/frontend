@@ -421,11 +421,24 @@ export const t = {
   },
 
   // ─────────────────────────────────────────
+  // 设计与施工图文件
+  // ─────────────────────────────────────────
+  projectDesign: {
+    heroSubtitle: '我们将技术方案转化为完整的设计与概算文件——从概念方案到可供建设及国家审查的施工图纸',
+    overviewBtn:  '项目概览',
+    phase1: '第一阶段',
+    phase2: '第二阶段',
+    phase3: '第三阶段',
+    whyTitle: '重要意义',
+    whyText:  '设计文件是取得国家审查（ГЭЭ）正面结论及施工许可证的基础，同时也是采购管理、工程量核算与成本管控的核心依据。',
+  },
+
+  // ─────────────────────────────────────────
   // 业绩——项目案例
   // ─────────────────────────────────────────
   experience: {
-    // Тесиктас铜选矿厂
-    tesiktas_title:       '"Тесиктас"铜选矿厂',
+    // Tesiktas铜选矿厂
+    tesiktas_title:       '"Tesiktas"铜选矿厂',
     tesiktas_desc:        '年处理矿石能力150万吨。采用Xinhai Mining工艺技术设计，由Pangea负责将项目适配哈萨克斯坦共和国相关标准。',
     tesiktas_label_main:  '选矿厂主厂房',
     tesiktas_label_sub1:  '破碎与选矿车间',
@@ -437,9 +450,9 @@ export const t = {
     water_label_sub1:'磨矿工位',
     water_label_sub2:'过滤工位',
 
-    // "Уштоган"选金厂
-    ushtogan_title: '"Уштоган"选金厂',
-    ushtogan_desc:  '年处理能力80万吨。工艺流程包括浸出、吸附、解吸、电解及多雷合金（Доре）熔炼。采用Xinhai Mining工艺技术设计，并适配哈萨克斯坦标准。',
+    // "Ushtogan"选金厂
+    ushtogan_title: '"Ushtogan"选金厂',
+    ushtogan_desc:  '年处理能力80万吨。工艺流程包括浸出、吸附、解吸、电解及多雷合金（Dore）熔炼。采用Xinhai Mining工艺技术设计，并适配哈萨克斯坦标准。',
 
     // 成品车间
     finished_title: '成品仓储区',
@@ -449,13 +462,13 @@ export const t = {
     sulfuric_title: '92%浓硫酸储罐区',
     sulfuric_desc:  '硫酸储罐区设计。制定了安全储存、运输及向生产工艺输送试剂的方案。',
 
-    // Бугетколь——电池级硫酸镍
-    bugetkol_battery_title:     '"Бугетколь"矿床：电池级硫酸镍湿法冶金厂',
+    // Bugetkol——电池级硫酸镍
+    bugetkol_battery_title:     '"Bugetkol"矿床：电池级硫酸镍湿法冶金厂',
     bugetkol_battery_desc:      '基于先进湿法冶金技术的镍矿加工创新项目。工厂工艺方案面向高纯度高端产品，完全满足严格的国际ESG标准及全球电池供应链（电池级）要求。',
     bugetkol_battery_label_sub1:'矿石预处理车间',
 
-    // Алмалы——SX
-    almaly_title: '"Алмалы"矿床：哈萨克斯坦最大溶剂萃取（SX）车间',
+    // Almaly——SX
+    almaly_title: '"Almaly"矿床：哈萨克斯坦最大溶剂萃取（SX）车间',
     almaly_desc:  '基于国际领先萃取电解技术（SX-EW），年产3万吨A级阴极铜的高技术综合体。',
 
     // KAZ Minerals
@@ -466,20 +479,20 @@ export const t = {
     cu_ni_title: '铜镍硫化矿选矿厂（年处理能力120万吨）',
     cu_ni_desc:  '工艺流程包括混合浮选阶段以获得铜镍混合精矿，随后通过试剂制度及多段精选，对其进行选择性分离，分别获得铜精矿及镍精矿。',
 
-    // Бугетколь——红土镍矿
-    bugetkol_laterite_title: '"Бугетколь"矿床：氧化镍（红土）矿湿法冶金加工厂',
+    // Bugetkol——红土镍矿
+    bugetkol_laterite_title: '"Bugetkol"矿床：氧化镍（红土）矿湿法冶金加工厂',
     bugetkol_laterite_desc:  '项目基于湿法冶金工艺，包括酸浸、杂质净化及目标组分提取等阶段，最终生产高纯度电池级硫酸镍。',
 
-    // Стрежанское
-    strezhanskoe_title: '"Стрежанское"多金属矿选矿厂项目',
+    // Strezhanskoe
+    strezhanskoe_title: '"Strezhanskoe"多金属矿选矿厂项目',
     strezhanskoe_desc:  '工艺流程基于选择性（优先）浮选法，可高效分离并最大程度回收铅、锌、铜，分别得到相应的精矿产品。',
 
-    // Акмая
-    akmaya_title: '"Акмая"矿床：钨矿石采选联合体\n（年处理能力100万吨）',
+    // Akmaya
+    akmaya_title: '"Akmaya"矿床：钨矿石采选联合体\n（年处理能力100万吨）',
     akmaya_desc:  '工艺流程包括磨矿、重选选矿及熔炼工段，最终获得成品钨产品（三氧化钨/钨铁合金）。',
 
-    // Аяк-Коджан
-    ayak_title: '"Аяк-Коджан"矿床：三段破碎系统设计',
+    // Ayak-Kozhan
+    ayak_title: '"Ayak-Kozhan"矿床：三段破碎系统设计',
     ayak_desc:  '完成矿石三段破碎综合体全流程设计。全部工艺及结构方案均严格遵循国际行业标准及哈萨克斯坦共和国国家规范性技术法规。',
 
     // 能源
@@ -487,8 +500,8 @@ export const t = {
     energy_desc:      '该分册包括生活饮用水、生产及消防供水泵站，以及燃煤锅炉房。',
     energy_label_sub1:'燃煤锅炉房',
 
-    // Бакенное
-    bakennoe_title: '"Бакенное"矿床工业固废（尾矿）加工工位',
+    // Bakennoe
+    bakennoe_title: '"Bakennoe"矿床工业固废（尾矿）加工工位',
     bakennoe_desc:  '项目拟对现存钽铌选矿尾矿进行二次加工，以高效回收锂资源。',
 
     // 硫酸镍工厂
