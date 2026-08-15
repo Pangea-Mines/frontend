@@ -18,6 +18,8 @@ export function getCommissioningContent(t, lang) {
     ...BASE,
     heroTitleParts: lang === 'en'
       ? [{ text: 'EPCM MANAGEMENT', color: '#312e81' }]
+      : lang === 'zh'
+      ? [{ text: 'EPCM管理', color: '#312e81' }]
       : [{ text: 'EPCM-УПРАВЛЕНИЕ', color: '#312e81' }],
     heroSubtitle: tc.heroSubtitle,
     items: [
@@ -112,7 +114,7 @@ export function getCommissioningContent(t, lang) {
       },
       {
         num: '',
-        numLabel: lang === 'en' ? 'Team' : 'Команда',
+        numLabel: lang === 'en' ? 'Team' : lang === 'zh' ? '团队' : 'Команда',
         numLabelLarge: true,
         title: tc.team_title,
         cards: [

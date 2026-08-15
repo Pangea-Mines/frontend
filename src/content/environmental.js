@@ -19,6 +19,8 @@ export function getEnvironmentalContent(t, lang) {
     ...BASE,
     heroTitleParts: lang === 'en'
       ? [{ text: 'ENVIRONMENTAL WORKS', color: '#16a34a' }]
+      : lang === 'zh'
+      ? [{ text: '环境工作', color: '#16a34a' }]
       : [{ text: 'ЭКОЛОГИЧЕСКИЕ ', color: '#6b7280' }, { text: 'РАБОТЫ', color: '#16a34a' }],
     heroSubtitle: te.heroSubtitle,
     items: [

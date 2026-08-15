@@ -12,6 +12,8 @@ export function getPermitsContent(t, lang) {
     ...BASE,
     heroTitleParts: lang === 'en'
       ? [{ text: 'PERMITS AND STATE EXPERTISE', color: '#9a2f2f' }]
+      : lang === 'zh'
+      ? [{ text: '许可与国家审查', color: '#9a2f2f' }]
       : [{ text: 'РАЗРЕШЕНИЯ И ГОСЭКСПЕРТИЗА', color: '#9a2f2f' }],
     heroSubtitle: tp.heroSubtitle,
     items: [

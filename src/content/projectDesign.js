@@ -11,6 +11,11 @@ export function getProjectDesignContent(t, lang) {
           [{ text: 'PROJECT DESIGN AND', color: '#7a2e2e' }],
           [{ text: 'WORKING DOCUMENTATION', color: '#3b3f8c' }],
         ]
+      : lang === 'zh'
+      ? [
+          [{ text: '设计与', color: '#7a2e2e' }],
+          [{ text: '施工图文件', color: '#3b3f8c' }],
+        ]
       : [
           [{ text: 'ПРОЕКТИРОВАНИЕ И', color: '#7a2e2e' }],
           [{ text: 'РАБОЧАЯ ДОКУМЕНТАЦИЯ', color: '#3b3f8c' }],

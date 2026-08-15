@@ -12,6 +12,8 @@ export function getMinePlanningContent(t, lang) {
     ...BASE,
     heroTitleParts: lang === 'en'
       ? [{ text: 'MINE PLANNING', color: '#5b7290' }]
+      : lang === 'zh'
+      ? [{ text: '采矿规划', color: '#5b7290' }]
       : [{ text: 'ПЛАН ', color: '#a9863c' }, { text: 'ГОРНЫХ РАБОТ', color: '#5b7290' }],
     heroSubtitle: tm.heroSubtitle,
     items: [

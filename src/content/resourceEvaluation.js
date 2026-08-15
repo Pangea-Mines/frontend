@@ -12,6 +12,8 @@ export function getResourceEvaluationContent(t, lang) {
     ...BASE,
     heroTitleParts: lang === 'en'
       ? [{ text: 'RESOURCE EVALUATION', color: '#14b8a6' }]
+      : lang === 'zh'
+      ? [{ text: '资源评估', color: '#14b8a6' }]
       : [{ text: 'ОЦЕНКА ', color: '#7a2e2e' }, { text: 'РЕСУРСОВ', color: '#14b8a6' }],
     heroSubtitle: tr.heroSubtitle,
     items: [

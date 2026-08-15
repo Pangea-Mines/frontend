@@ -19,6 +19,14 @@ export function getLaboratoryContent(t, lang) {
           { text: 'SNPOE', color: '#15803d' },
           { text: '«Kazmekhanobr»', color: '#c2680c' },
         ]
+      : lang === 'zh'
+      ? [
+          { text: '分支机构', color: '#2563eb' },
+          { text: 'РГП', color: '#7a2e2e' },
+          { text: '«НЦ КПМС РК»', color: '#161616' },
+          { text: 'ГНПОПЭ', color: '#15803d' },
+          { text: '«Казмеханобр»', color: '#c2680c' },
+        ]
       : [
           { text: 'Филиал', color: '#2563eb' },
           { text: 'РГП', color: '#7a2e2e' },
@@ -31,6 +39,12 @@ export function getLaboratoryContent(t, lang) {
           [{ text: 'ANALYTICAL LABORATORY', color: '#6b6b3a' }],
           [{ text: 'AND INDUSTRIAL', color: '#3b5d7a' }],
           [{ text: 'TESTING', color: '#5b9bd5' }],
+        ]
+      : lang === 'zh'
+      ? [
+          [{ text: '分析实验室', color: '#6b6b3a' }],
+          [{ text: '与工业', color: '#3b5d7a' }],
+          [{ text: '测试基地', color: '#5b9bd5' }],
         ]
       : [
           [{ text: 'АНАЛИТИЧЕСКАЯ ЛАБОРАТОРИЯ', color: '#6b6b3a' }],
