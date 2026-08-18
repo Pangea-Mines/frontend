@@ -434,6 +434,29 @@ export default function DetailPageTemplate({
           .dpt-cards { grid-template-columns: repeat(3, 1fr); }
           .dpt-card.full { grid-column: 1 / -1; }
         }
+        @media(min-width:1600px) {
+          .dpt-hero-sticky { top: 88px; height: calc(100vh - 88px); min-height: calc(100vh - 88px); }
+          .dpt-hero-img img { width: 52%; }
+          .dpt-hero-text { padding: 0 80px; max-width: 720px; }
+          .dpt-watermark { font-size: 72px; }
+          .dpt-hero-title { font-size: 52px; }
+          .dpt-hero-sub { font-size: 16px; max-width: 640px; }
+          .dpt-wrap { max-width: 1900px; padding: 72px 60px 100px 580px; }
+          .dpt-item { grid-template-columns: 160px 1fr; gap: 0 48px; padding: 60px 0 60px 28px; }
+          .dpt-num { font-size: 100px; }
+          .dpt-title { font-size: 18px; }
+          .dpt-text { font-size: 15px; line-height: 1.8; }
+          .dpt-bullets li { font-size: 15px; }
+          .dpt-subsection-h { font-size: 15px; }
+          .dpt-callout-text { font-size: 14px; }
+          .dpt-accent { font-size: 14px; }
+          .dpt-sub { font-size: 12px; }
+          .dpt-duration { font-size: 13px; }
+          .dpt-wim-tag { font-size: 18px; }
+          .dpt-wim-text { font-size: 14px; max-width: 860px; }
+          .dpt-wim-circle { width: 90px; height: 90px; }
+          .dpt-line-wrap { width: 560px; }
+        }
         @media (prefers-reduced-motion: reduce) {
           .dpt-item { transition: none; transform: none; }
           .dpt-item::before { transition: none; }

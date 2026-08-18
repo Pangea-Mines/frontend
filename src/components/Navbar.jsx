@@ -29,11 +29,13 @@ export default function Navbar() {
   const [langOpen, setLangOpen]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 1024);
+  const [isLarge,   setIsLarge]   = useState(() => window.innerWidth >= 1600);
 
   useEffect(() => {
     const fn = () => {
       const desktop = window.innerWidth >= 1024;
       setIsDesktop(desktop);
+      setIsLarge(window.innerWidth >= 1600);
       if (desktop) setMenuOpen(false);
     };
     window.addEventListener('resize', fn);
@@ -51,27 +53,27 @@ export default function Navbar() {
     <>
       <header style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-        height: 72, background: 'rgba(229,231,235,0.28)',
+        height: isLarge ? 88 : 72, background: 'rgba(229,231,235,0.28)',
         backdropFilter: 'blur(16px) saturate(180%)', WebkitBackdropFilter: 'blur(16px) saturate(180%)',
         borderBottom: '1px solid rgba(255,255,255,0.25)', boxShadow: '0 1px 12px rgba(0,0,0,0.04)',
       }}>
         <div style={{
-          maxWidth: 1440, margin: '0 auto', height: '100%',
-          display: 'flex', alignItems: 'center', padding: isDesktop ? '0 40px' : '0 24px', gap: 16,
+          maxWidth: isLarge ? 2000 : 1440, margin: '0 auto', height: '100%',
+          display: 'flex', alignItems: 'center', padding: isDesktop ? (isLarge ? '0 60px' : '0 40px') : '0 24px', gap: 16,
         }}>
           {/* Logo */}
           <NavLink to="/" style={{ flexShrink: 0, textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <img src="/images/Logo/ChatGPT Image 11 мая 2026 г., 14_49_17 (1).png" alt="PANGEA" style={{ height: 64, width: 'auto', objectFit: 'contain' }} />
+            <img src="/images/Logo/ChatGPT Image 11 мая 2026 г., 14_49_17 (1).png" alt="PANGEA" style={{ height: isLarge ? 78 : 64, width: 'auto', objectFit: 'contain' }} />
           </NavLink>
 
           {/* Desktop nav */}
           {isDesktop && (
-            <nav style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 0, gap: 'clamp(10px, 1.6vw, 28px)', overflow: 'hidden' }}>
+            <nav style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 0, gap: isLarge ? 'clamp(16px, 2vw, 40px)' : 'clamp(10px, 1.6vw, 28px)', overflow: 'hidden' }}>
               {navLinks.map((link) => (
                 <NavLink key={link.path} to={link.path} end={link.path === '/'}
                   style={({ isActive }) => ({
                     flexShrink: 0, whiteSpace: 'nowrap', textDecoration: 'none',
-                    fontSize: 12, letterSpacing: '0.05em',
+                    fontSize: isLarge ? 14 : 12, letterSpacing: '0.05em',
                     fontWeight: isActive ? 700 : 500, textTransform: 'uppercase',
                     paddingBottom: 16, marginTop: 16,
                     borderBottom: '2px solid transparent',
@@ -136,7 +138,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div style={{
-        position: 'fixed', top: 72, left: 0, right: 0, bottom: 0, zIndex: 40,
+        position: 'fixed', top: isLarge ? 88 : 72, left: 0, right: 0, bottom: 0, zIndex: 40,
         background: 'linear-gradient(90deg, #c7c1be, #ffffff)', overflowY: 'auto',
         transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',

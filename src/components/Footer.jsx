@@ -54,6 +54,16 @@ export default function Footer() {
           .ftr-grid { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; }
           .ftr-pages { grid-template-columns: repeat(5, auto); max-width: 640px; }
         }
+        @media(min-width: 1600px) {
+          .ftr { padding-top: 72px; }
+          .ftr-inner { max-width: 2000px; padding: 0 60px; }
+          .ftr-brand-name { height: 80px; }
+          .ftr-brand-tag { font-size: 15px; max-width: 340px; }
+          .ftr-pages a { font-size: 14px; }
+          .ftr-contacts { font-size: 14px; }
+          .ftr-bottom span { font-size: 14px; }
+          .ftr-bottom-links a { font-size: 14px; }
+        }
       `}</style>
 
       <div className="ftr-inner">
