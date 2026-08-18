@@ -437,10 +437,10 @@ export default function DetailPageTemplate({
         @media(min-width:1600px) {
           .dpt-hero-sticky { top: 88px; height: calc(100vh - 88px); min-height: calc(100vh - 88px); }
           .dpt-hero-img img { width: 52%; }
-          .dpt-hero-text { padding: 0 80px; max-width: 720px; }
-          .dpt-watermark { font-size: 72px; }
-          .dpt-hero-title { font-size: 52px; }
-          .dpt-hero-sub { font-size: 16px; max-width: 640px; }
+          .dpt-hero-text { padding: 0 80px; max-width: calc(44% - 40px); }
+          .dpt-watermark { font-size: clamp(72px, 6vw, 120px); letter-spacing: 0.06em; }
+          .dpt-hero-title { font-size: clamp(54px, 4.5vw, 96px); line-height: 1.1; }
+          .dpt-hero-sub { font-size: clamp(16px, 1.1vw, 22px); max-width: 100%; }
           .dpt-wrap { max-width: 1900px; padding: 72px 60px 100px 580px; }
           .dpt-item { grid-template-columns: 160px 1fr; gap: 0 48px; padding: 60px 0 60px 28px; }
           .dpt-num { font-size: 100px; }

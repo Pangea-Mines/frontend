@@ -235,9 +235,9 @@ export default function HomeIntro() {
         }
         @media(min-width:1600px) {
           .home-hero { min-height: calc(100svh - 88px); }
-          .home-hero-text { padding: 28vh 80px 0; max-width: 1200px; }
-          .home-hero-h1 { font-size: 58px; }
-          .home-hero-sub { font-size: 16px; max-width: 820px; margin-bottom: 36px; }
+          .home-hero-text { padding: 28vh 80px 0; max-width: 1500px; }
+          .home-hero-h1 { font-size: clamp(62px, 5.5vw, 120px); line-height: 1.1; }
+          .home-hero-sub { font-size: clamp(16px, 1.2vw, 24px); max-width: 1100px; margin-bottom: 36px; }
           .home-cta { font-size: 13px; padding: 14px 28px; }
           .home-cards { padding: 72px 0 80px; }
           .home-cards-inner { max-width: 1900px; padding: 0 60px; }
