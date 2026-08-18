@@ -434,13 +434,19 @@ export default function DetailPageTemplate({
           .dpt-cards { grid-template-columns: repeat(3, 1fr); }
           .dpt-card.full { grid-column: 1 / -1; }
         }
+        @media(min-width:768px) {
+          .dpt-hero-text { text-align: center; }
+          .dpt-hero-title { text-align: center; }
+          .dpt-hero-sub { margin: 0 auto; text-align: center; }
+          .dpt-hero-credit { text-align: center; }
+        }
         @media(min-width:1600px) {
           .dpt-hero-sticky { top: 88px; height: calc(100vh - 88px); min-height: calc(100vh - 88px); }
           .dpt-hero-img img { width: 52%; }
-          .dpt-hero-text { padding: 0 80px; max-width: calc(44% - 40px); }
-          .dpt-watermark { font-size: clamp(72px, 6vw, 120px); letter-spacing: 0.06em; }
-          .dpt-hero-title { font-size: clamp(54px, 4.5vw, 96px); line-height: 1.1; }
-          .dpt-hero-sub { font-size: clamp(16px, 1.1vw, 22px); max-width: 100%; }
+          .dpt-hero-text { padding: 0 80px; max-width: calc(44% - 40px); text-align: center; }
+          .dpt-watermark { font-size: clamp(60px, 5vw, 96px); letter-spacing: 0.06em; }
+          .dpt-hero-title { font-size: clamp(46px, 3.8vw, 72px); line-height: 1.15; text-align: center; }
+          .dpt-hero-sub { font-size: clamp(14px, 1vw, 20px); max-width: 100%; margin: 0 auto; text-align: center; }
           .dpt-wrap { max-width: 1900px; padding: 72px 60px 100px 580px; }
           .dpt-item { grid-template-columns: 160px 1fr; gap: 0 48px; padding: 60px 0 60px 28px; }
           .dpt-num { font-size: 100px; }
