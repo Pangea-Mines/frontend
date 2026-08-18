@@ -60,11 +60,11 @@ export function getEnvironmentalContent(t, lang) {
         duration: te.item04_duration,
         text:     te.item04_text,
         bullets: [
-          { text: lang === 'en' ? 'Date and venue coordination with LEB' : 'Согласование даты и площадки с МИО', days: '~10 к.д.' },
-          { text: lang === 'en' ? 'Publication of notice in newspaper and media' : 'Публикация объявления в газете и СМИ', days: '~4 р.д.' },
-          { text: lang === 'en' ? 'Posting notice on portal and boards' : 'Размещение объявления на портале и досках', days: '~23–30 р.д' },
-          { text: lang === 'en' ? 'Conducting public hearings' : 'Проведение общественных слушаний', days: '~5 р.д.' },
-          { text: lang === 'en' ? 'Processing and posting minutes' : 'Оформление и размещение протокола', days: '~2 р.д.' },
+          { text: lang === 'en' ? 'Date and venue coordination with LEB' : lang === 'zh' ? '与地方行政机关（МИО）协商确定日期及地点' : 'Согласование даты и площадки с МИО', days: '~10 к.д.' },
+          { text: lang === 'en' ? 'Publication of notice in newspaper and media' : lang === 'zh' ? '在报纸及媒体发布公告' : 'Публикация объявления в газете и СМИ', days: '~4 р.д.' },
+          { text: lang === 'en' ? 'Posting notice on portal and boards' : lang === 'zh' ? '在门户网站及公告栏发布通知' : 'Размещение объявления на портале и досках', days: '~23–30 р.д' },
+          { text: lang === 'en' ? 'Conducting public hearings' : lang === 'zh' ? '组织并开展公众听证会' : 'Проведение общественных слушаний', days: '~5 р.д.' },
+          { text: lang === 'en' ? 'Processing and posting minutes' : lang === 'zh' ? '整理并发布会议纪要' : 'Оформление и размещение протокола', days: '~2 р.д.' },
         ],
       },
       {
@@ -87,15 +87,17 @@ export function getEnvironmentalContent(t, lang) {
         bullets:  [],
         sections: [
           {
-            heading: lang === 'en' ? 'ORGANIZATION AND SUPPORT OF PUBLIC HEARINGS — CONSTRUCTION' : 'ОРГАНИЗАЦИЯ И СОПРОВОЖДЕНИЕ ОБЩЕСТВЕННЫХ СЛУШАНИЙ — СТРОИТЕЛЬСТВО',
+            heading: lang === 'en' ? 'ORGANIZATION AND SUPPORT OF PUBLIC HEARINGS — CONSTRUCTION' : lang === 'zh' ? '施工活动公众听证会的组织与陪同' : 'ОРГАНИЗАЦИЯ И СОПРОВОЖДЕНИЕ ОБЩЕСТВЕННЫХ СЛУШАНИЙ — СТРОИТЕЛЬСТВО',
             text: lang === 'en'
               ? 'We conduct hearings on the planned construction activities using the same procedure: LEB → notice publication → hearings → minutes. We fully handle all organizational and documentation support.'
+              : lang === 'zh'
+              ? '我们按相同程序组织施工活动公众听证会：МИО→公告发布→听证会→纪要。全程承担组织协调及文件陪同工作。'
               : 'Проводим слушания по намечаемой строительной деятельности по той же процедуре: МИО → публикация объявления → слушания → протокол. Полностью берём на себя организационное и документационное сопровождение.',
             bullets: [
-              { text: lang === 'en' ? 'Coordination with LEB' : 'Согласование с МИО', days: '~10 к.д.' },
-              { text: lang === 'en' ? 'Publication of notice' : 'Публикация объявления', days: '~23–30 р.д.' },
-              { text: lang === 'en' ? 'Conducting hearings' : 'Проведение слушаний', days: '~5 р.д.' },
-              { text: lang === 'en' ? 'Processing and posting minutes' : 'Оформление и размещение протокола', days: '~2 р.д.' },
+              { text: lang === 'en' ? 'Coordination with LEB' : lang === 'zh' ? '与地方行政机关（МИО）协商' : 'Согласование с МИО', days: '~10 к.д.' },
+              { text: lang === 'en' ? 'Publication of notice' : lang === 'zh' ? '发布公告' : 'Публикация объявления', days: '~23–30 р.д.' },
+              { text: lang === 'en' ? 'Conducting hearings' : lang === 'zh' ? '组织听证会' : 'Проведение слушаний', days: '~5 р.д.' },
+              { text: lang === 'en' ? 'Processing and posting minutes' : lang === 'zh' ? '整理并发布会议纪要' : 'Оформление и размещение протокола', days: '~2 р.д.' },
             ],
           },
         ],
@@ -120,15 +122,17 @@ export function getEnvironmentalContent(t, lang) {
         bullets: [],
         sections: [
           {
-            heading: lang === 'en' ? 'ORGANIZATION AND SUPPORT OF PUBLIC HEARINGS — OPERATION' : 'ОРГАНИЗАЦИЯ И СОПРОВОЖДЕНИЕ ОБЩЕСТВЕННЫХ СЛУШАНИЙ — ЭКСПЛУАТАЦИЯ',
+            heading: lang === 'en' ? 'ORGANIZATION AND SUPPORT OF PUBLIC HEARINGS — OPERATION' : lang === 'zh' ? '运营活动公众听证会的组织与陪同' : 'ОРГАНИЗАЦИЯ И СОПРОВОЖДЕНИЕ ОБЩЕСТВЕННЫХ СЛУШАНИЙ — ЭКСПЛУАТАЦИЯ',
             text: lang === 'en'
               ? 'We conduct hearings on planned operational activities. The organizational procedure is identical to the previous stages; we conduct it in parallel with the submission of documents for SER.'
+              : lang === 'zh'
+              ? '我们按相同程序组织运营活动公众听证会。程序与前阶段相同，与ГЭЭ文件提交并行推进。'
               : 'Проводим слушания по намечаемой эксплуатационной деятельности. Организационная процедура аналогична предыдущим этапам; ведём параллельно с подачей документов на ГЭЭ.',
             bullets: [
-              { text: lang === 'en' ? 'Coordination with LEB' : 'Согласование с МИО', days: '~10 к.д.' },
-              { text: lang === 'en' ? 'Publication of notice in media' : 'Публикация объявления в СМИ', days: '~23–30 р.д.' },
-              { text: lang === 'en' ? 'Conducting hearings' : 'Проведение слушаний', days: '~5 р.д.' },
-              { text: lang === 'en' ? 'Processing and posting minutes' : 'Оформление и размещение протокола', days: '~2 р.д.' },
+              { text: lang === 'en' ? 'Coordination with LEB' : lang === 'zh' ? '与地方行政机关（МИО）协商' : 'Согласование с МИО', days: '~10 к.д.' },
+              { text: lang === 'en' ? 'Publication of notice in media' : lang === 'zh' ? '在媒体发布公告' : 'Публикация объявления в СМИ', days: '~23–30 р.д.' },
+              { text: lang === 'en' ? 'Conducting hearings' : lang === 'zh' ? '组织听证会' : 'Проведение слушаний', days: '~5 р.д.' },
+              { text: lang === 'en' ? 'Processing and posting minutes' : lang === 'zh' ? '整理并发布会议纪要' : 'Оформление и размещение протокола', days: '~2 р.д.' },
             ],
           },
         ],
@@ -141,7 +145,7 @@ export function getEnvironmentalContent(t, lang) {
         bullets:  [],
         sections: [
           {
-            heading: lang === 'en' ? 'WE DEVELOP AND SUBMIT FOR SER' : 'РАЗРАБАТЫВАЕМ И ПОДАЁМ НА ГЭЭ',
+            heading: lang === 'en' ? 'WE DEVELOP AND SUBMIT FOR SER' : lang === 'zh' ? '我们负责编制并提交ГЭЭ材料' : 'РАЗРАБАТЫВАЕМ И ПОДАЁМ НА ГЭЭ',
             bullets: [te.item11_b1, te.item11_b2, te.item11_b3, te.item11_b4, te.item11_b5, te.item11_b6, te.item11_b7],
           },
         ],
