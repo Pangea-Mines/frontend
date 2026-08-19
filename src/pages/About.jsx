@@ -71,6 +71,27 @@ export default function About() {
           .about-grid { grid-template-columns: repeat(2, 1fr); }
           .about-principles { grid-template-columns: repeat(4, 1fr); }
         }
+        @media(min-width: 1600px) {
+          .about-wrap { max-width: 1900px; padding: 100px 60px 120px 580px; }
+          .about-line-wrap { width: 560px; }
+          .about-tag { font-size: 15px; letter-spacing: 0.18em; margin-bottom: 22px; }
+          .about-title { font-size: 48px; max-width: 1100px; margin-bottom: 32px; }
+          .about-intro { font-size: 19px; max-width: 960px; padding-left: 24px; margin-bottom: 64px; line-height: 1.85; }
+          .about-section-tag { font-size: 14px; letter-spacing: 0.16em; margin-bottom: 22px; }
+          .about-p { font-size: 17px; max-width: 1060px; line-height: 1.9; margin-bottom: 22px; }
+          .about-foundations { gap: 36px; margin-top: 72px; }
+          .about-foundation-num { font-size: 16px; }
+          .about-foundation-title { font-size: 19px; margin-bottom: 12px; }
+          .about-foundation-text { font-size: 16px; line-height: 1.75; }
+          .about-quote { font-size: 20px; max-width: 1060px; padding-left: 24px; margin-top: 80px; }
+          .about-quote-author { font-size: 15px; margin-top: 16px; }
+          .about-grid { gap: 36px 56px; }
+          .about-card-title { font-size: 18px; margin-bottom: 10px; }
+          .about-card-text { font-size: 16px; line-height: 1.75; }
+          .about-principles { gap: 36px; }
+          .about-principle-title { font-size: 18px; margin-bottom: 10px; }
+          .about-principle-text { font-size: 16px; line-height: 1.75; }
+        }
       `}</style>
 
       <HomeIntro />

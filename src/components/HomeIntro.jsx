@@ -235,16 +235,16 @@ export default function HomeIntro() {
         }
         @media(min-width:1600px) {
           .home-hero { min-height: calc(100svh - 88px); }
-          .home-hero-text { padding: 28vh 80px 0; max-width: 1500px; }
-          .home-hero-h1 { font-size: clamp(50px, 4vw, 76px); line-height: 1.15; }
-          .home-hero-sub { font-size: clamp(14px, 1vw, 20px); max-width: 1000px; margin-bottom: 36px; }
-          .home-cta { font-size: 13px; padding: 14px 28px; }
-          .home-cards { padding: 72px 0 80px; }
+          .home-hero-text { padding: 26vh 80px 0; max-width: 1600px; }
+          .home-hero-h1 { font-size: clamp(60px, 6vw, 130px); line-height: 1.1; }
+          .home-hero-sub { font-size: clamp(18px, 1.4vw, 32px); max-width: 1100px; margin-bottom: 40px; }
+          .home-cta { font-size: 16px; padding: 16px 36px; gap: 14px; }
+          .home-cards { padding: 80px 0 100px; }
           .home-cards-inner { max-width: 1900px; padding: 0 60px; }
-          .svc-card { min-height: 200px; padding: 32px; }
-          .svc-card-title { font-size: 18px; }
-          .svc-card-link { font-size: 14px; margin-top: 28px; }
-          .svc-arrow { width: 46px; height: 46px; }
+          .svc-card { min-height: 240px; padding: 36px; }
+          .svc-card-title { font-size: 22px; }
+          .svc-card-link { font-size: 17px; margin-top: 32px; }
+          .svc-arrow { width: 50px; height: 50px; }
           .svc-track { gap: 24px; }
           .svc-dot { width: 9px; height: 9px; }
           .svc-dot.is-active { width: 26px; }
