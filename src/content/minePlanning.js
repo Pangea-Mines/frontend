@@ -1,5 +1,5 @@
 const BASE = {
-  heroImage: '/images/Stones/Frame 2147229063.png',
+  heroImage: '/images/Stones/Frame 2147229063 (1)_11zon.png',
   heroTitleGradient: 'linear-gradient(90deg, #645330, #419eff, #007dff)',
   heroAlign: 'left',
   accentColor: '#3b4f8c',
