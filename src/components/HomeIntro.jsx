@@ -220,7 +220,7 @@ export default function HomeIntro() {
         .svc-dot.is-active { background: #c75a1a; width: 20px; border-radius: 4px; }
 
         @media(min-width:768px) {
-          .home-hero { min-height: 75svh; }
+          .home-hero { min-height: 80svh; }
           .home-hero-bg { left: 0; width: 100%; height: auto; max-width: 100%; transform: none; }
           .home-hero-reflection { display: block; }
           .home-hero-text { padding: 30vh 60px 0; max-width: 820px; }
