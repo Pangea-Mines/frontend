@@ -220,10 +220,10 @@ export default function HomeIntro() {
         .svc-dot.is-active { background: #c75a1a; width: 20px; border-radius: 4px; }
 
         @media(min-width:768px) {
-          .home-hero { min-height: 80svh; }
+          .home-hero { min-height: 75svh; }
           .home-hero-bg { left: 0; width: 100%; height: auto; max-width: 100%; transform: none; }
           .home-hero-reflection { display: block; }
-          .home-hero-text { padding: 22vh 60px 0; max-width: 820px; }
+          .home-hero-text { padding: 30vh 60px 0; max-width: 820px; }
           .home-hero-h1 { font-size: 32px; }
           .home-cards-inner { padding: 0 40px; }
           .svc-card { flex: 0 0 calc((100% - 2 * 20px) / 3); }
@@ -235,7 +235,7 @@ export default function HomeIntro() {
         }
         @media(min-width:1600px) {
           .home-hero { min-height: 72svh; }
-          .home-hero-text { padding: 18vh 80px 0; max-width: 1400px; }
+          .home-hero-text { padding: 26vh 80px 0; max-width: 1400px; }
           .home-hero-h1 { font-size: clamp(44px, 3.2vw, 56px); line-height: 1.15; }
           .home-hero-sub { font-size: clamp(14px, 1vw, 20px); max-width: 900px; }
           .home-cta { font-size: 16px; padding: 16px 36px; gap: 14px; }
