@@ -231,6 +231,7 @@ export default function HomeIntro() {
         }
         @media(min-width:1200px) {
           .home-hero-h1 { font-size: 38px; }
+          .home-hero-text { max-width: 1100px; }
           .svc-card { flex: 0 0 calc((100% - 3 * 20px) / 4); }
         }
         @media(min-width:1600px) {
