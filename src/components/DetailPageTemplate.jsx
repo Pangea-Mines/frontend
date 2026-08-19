@@ -450,16 +450,21 @@ export default function DetailPageTemplate({
           .dpt-wrap { max-width: 1900px; padding: 72px 60px 100px 580px; }
           .dpt-item { grid-template-columns: 160px 1fr; gap: 0 48px; padding: 60px 0 60px 28px; }
           .dpt-num { font-size: 100px; }
-          .dpt-title { font-size: 18px; }
-          .dpt-text { font-size: 15px; line-height: 1.8; }
-          .dpt-bullets li { font-size: 15px; }
-          .dpt-subsection-h { font-size: 15px; }
-          .dpt-callout-text { font-size: 14px; }
-          .dpt-accent { font-size: 14px; }
-          .dpt-sub { font-size: 12px; }
-          .dpt-duration { font-size: 13px; }
-          .dpt-wim-tag { font-size: 18px; }
-          .dpt-wim-text { font-size: 14px; max-width: 860px; }
+          .dpt-title { font-size: 22px; }
+          .dpt-text { font-size: 18px; line-height: 1.8; }
+          .dpt-bullets li { font-size: 18px; }
+          .dpt-dot { margin-top: 9px; width: 5px; height: 5px; }
+          .dpt-subsection-h { font-size: 19px; }
+          .dpt-callout-h { font-size: 15px; }
+          .dpt-callout-text { font-size: 17px; }
+          .dpt-accent { font-size: 17px; }
+          .dpt-sub { font-size: 15px; }
+          .dpt-duration { font-size: 16px; }
+          .dpt-note { font-size: 14px; }
+          .dpt-card-h { font-size: 15px; }
+          .dpt-card-text { font-size: 14px; }
+          .dpt-wim-tag { font-size: 22px; }
+          .dpt-wim-text { font-size: 17px; max-width: 860px; }
           .dpt-wim-circle { width: 90px; height: 90px; }
           .dpt-line-wrap { width: 560px; }
         }
