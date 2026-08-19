@@ -235,8 +235,9 @@ export default function HomeIntro() {
         }
         @media(min-width:1600px) {
           .home-hero { min-height: calc(100svh - 88px); }
+          .home-hero-text { max-width: 1400px; }
           .home-hero-h1 { font-size: clamp(46px, 3.8vw, 72px); line-height: 1.15; }
-          .home-hero-sub { font-size: clamp(14px, 1vw, 20px); }
+          .home-hero-sub { font-size: clamp(14px, 1vw, 20px); max-width: 900px; }
           .home-cta { font-size: 16px; padding: 16px 36px; gap: 14px; }
           .home-cards { padding: 80px 0 100px; }
           .home-cards-inner { max-width: 1900px; padding: 0 60px; }
