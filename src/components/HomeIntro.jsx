@@ -235,9 +235,6 @@ export default function HomeIntro() {
         }
         @media(min-width:1600px) {
           .home-hero { min-height: calc(100svh - 88px); }
-          .home-hero-text { padding: 26vh 80px 0; max-width: 1600px; }
-          .home-hero-h1 { font-size: clamp(60px, 6vw, 130px); line-height: 1.1; }
-          .home-hero-sub { font-size: clamp(18px, 1.4vw, 32px); max-width: 1100px; margin-bottom: 40px; }
           .home-cta { font-size: 16px; padding: 16px 36px; gap: 14px; }
           .home-cards { padding: 80px 0 100px; }
           .home-cards-inner { max-width: 1900px; padding: 0 60px; }
