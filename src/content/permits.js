@@ -1,5 +1,5 @@
 const BASE = {
-  heroImage: '/images/Stones/copper-ore-with-transparant-background_891313-132-Photoroom.png',
+  heroImage: '/images/Stones/copper-ore-with-transparant-background_Photoroom.png',
   heroTitleGradient: 'linear-gradient(90deg, #3a3f47, rgba(182,0,0,0.23))',
   heroAlign: 'left',
   accentColor: '#9a2f2f',
