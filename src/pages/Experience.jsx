@@ -184,12 +184,12 @@ export default function Experience() {
           .exp-project-desc { font-size: 13px; }
         }
         @media (min-width: 1600px) {
-          .exp-text-block { max-width: 560px; }
-          .exp-project-num { font-size: 13px; }
-          .exp-project-title { font-size: 22px; line-height: 1.4; }
-          .exp-project-desc { font-size: 16px; line-height: 1.85; }
-          .exp-main-label { font-size: 13px; letter-spacing: 0.07em; }
-          .exp-sub-label { font-size: 13px; }
+          .exp-text-block { max-width: 680px; }
+          .exp-project-num { font-size: 15px; }
+          .exp-project-title { font-size: 28px; line-height: 1.35; }
+          .exp-project-desc { font-size: 20px; line-height: 1.85; }
+          .exp-main-label { font-size: 18px; letter-spacing: 0.07em; line-height: 1.5; }
+          .exp-sub-label { font-size: 18px; line-height: 1.5; }
           .exp-mobile-list { padding: 40px 40px 100px; gap: 60px; }
           .exp-dots { bottom: 72px; }
           .exp-dot { width: 6px; height: 6px; }
